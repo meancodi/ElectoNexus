@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/half" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/Sign_out_Voter"
         android:layout_width="181dp"
         android:layout_height="62dp"
         android:background="@drawable/custom_button"
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.049" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/User_Name_Voter"
         android:layout_width="203dp"
         android:layout_height="50dp"
         android:text="Rahul"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.23" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/Registered_Elections_Voter"
         android:layout_width="159dp"
         android:layout_height="120dp"
         android:layout_marginStart="24dp"
@@ -68,7 +68,7 @@
         app:layout_constraintVertical_bias="0.52" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/Register_For_Elections_Voter"
         android:layout_width="173dp"
         android:layout_height="119dp"
         android:background="@drawable/custom_button"
@@ -83,7 +83,7 @@
         app:layout_constraintVertical_bias="0.522" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/Cast_Your_Vote_Voter"
         android:layout_width="158dp"
         android:layout_height="135dp"
         android:background="@drawable/custom_button"
@@ -98,7 +98,7 @@
         app:layout_constraintVertical_bias="0.791" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/Apply_For_Candidates_Voter"
         android:layout_width="166dp"
         android:layout_height="131dp"
         android:background="@drawable/custom_button"
@@ -113,7 +113,7 @@
         app:layout_constraintVertical_bias="0.786" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/Results_Voter"
         android:layout_width="141dp"
         android:layout_height="68dp"
         android:background="@drawable/custom_button"

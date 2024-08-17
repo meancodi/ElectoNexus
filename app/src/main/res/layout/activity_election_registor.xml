@@ -10,7 +10,7 @@
     >
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/ElectionID_Request"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="373dp"
         android:layout_height="60dp"
@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.087" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/button_Send_Request"
         android:layout_width="210dp"
         android:layout_height="63dp"
         android:background="@drawable/custom_button"

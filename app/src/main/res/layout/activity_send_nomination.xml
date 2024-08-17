@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.023" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/ElectionID_Send_Nomination"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="373dp"
         android:layout_height="60dp"
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.146" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Search_Send_Nomination"
         android:layout_width="229dp"
         android:layout_height="65dp"
         android:background="@drawable/custom_button"
@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.259" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/Manifesto_Send_Nomination"
         android:layout_width="388dp"
         android:layout_height="169dp"
         android:background="@drawable/input_bg"
@@ -80,7 +80,7 @@
         app:layout_constraintVertical_bias="0.642" />
 
     <EditText
-        android:id="@+id/editTextNumber2"
+        android:id="@+id/Age_Send_Nomination"
         android:layout_width="382dp"
         android:layout_height="58dp"
         android:layout_marginStart="16dp"
@@ -100,7 +100,7 @@
         app:layout_constraintVertical_bias="0.811" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/button_Send_Nomination"
         android:layout_width="229dp"
         android:layout_height="65dp"
         android:background="@drawable/custom_button"
@@ -114,7 +114,7 @@
         app:layout_constraintVertical_bias="0.975" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/Name_Send_Nominations"
         android:layout_width="392dp"
         android:layout_height="63dp"
         android:background="@drawable/input_bg"
