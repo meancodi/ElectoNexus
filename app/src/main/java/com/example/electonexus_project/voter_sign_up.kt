@@ -1,4 +1,4 @@
-package LoginAndSignUp
+package com.example.electonexus_project
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import com.example.electonexus_project.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class voter_sign_up : ComponentActivity() {
 
@@ -61,12 +63,28 @@ class voter_sign_up : ComponentActivity() {
             b=false
         }
         if(b) {
-            val voter = VoterModel(name,username, password,"V")
-            fbref.child(username).setValue(voter).addOnCompleteListener {
-                Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener { err ->
-                Toast.makeText(this, "${err.message}", Toast.LENGTH_SHORT).show()
-            }
+            fbref.child(username).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()) {
+                        Toast.makeText(this@voter_sign_up, "Username Exists", Toast.LENGTH_SHORT)
+                            .show()
+                        b = false
+                    }
+                    else{
+                        val voter = VoterModel(name,username, password,"V")
+                        fbref.child(username).setValue(voter).addOnCompleteListener {
+                            Toast.makeText(this@voter_sign_up, "Sign Up Successful", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener { err ->
+                            Toast.makeText(this@voter_sign_up, "${err.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@voter_sign_up, "$error", Toast.LENGTH_SHORT).show()
+                }
+            })
+
         }
         return b
     }

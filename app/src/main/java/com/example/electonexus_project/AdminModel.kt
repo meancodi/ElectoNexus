@@ -1,4 +1,4 @@
-package LoginAndSignUp
+package com.example.electonexus_project
 
 data class AdminModel (
 

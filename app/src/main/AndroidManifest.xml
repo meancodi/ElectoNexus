@@ -17,16 +17,16 @@
         android:theme="@style/Theme.ElectoNexus_project"
         tools:targetApi="31">
                 <activity
-            android:name="LoginAndSignUp.voter_sign_up"
+            android:name=".voter_sign_up"
             android:exported="false" />
         <activity
-            android:name="LoginAndSignUp.admin_sign_up"
+            android:name=".admin_sign_up"
             android:exported="false" />
         <activity
-            android:name="LoginAndSignUp.Account_type"
+            android:name=".Account_type"
             android:exported="false" />
         <activity
-            android:name="LoginAndSignUp.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ElectoNexus_project">

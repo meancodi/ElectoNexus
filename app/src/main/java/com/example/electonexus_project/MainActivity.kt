@@ -1,4 +1,4 @@
-package LoginAndSignUp
+package com.example.electonexus_project
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import com.example.electonexus_project.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

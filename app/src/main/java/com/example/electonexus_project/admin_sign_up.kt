@@ -1,4 +1,4 @@
-package LoginAndSignUp
+package com.example.electonexus_project
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import com.example.electonexus_project.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class admin_sign_up : ComponentActivity() {
     private lateinit var eninsert : EditText
@@ -32,20 +34,16 @@ class admin_sign_up : ComponentActivity() {
         fbref1 = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account")
         val signup :  Button = findViewById(R.id.LSignupAdmin)
 
-
         signup.setOnClickListener {
-                val noerror: Boolean = addAdmin()
-                if (noerror) {
-                    Intent(this, MainActivity::class.java).also { startActivity(it) }
-                    finish()
-                }
+                addAdmin()
+
             }
 
 
     }
 
-    private fun addAdmin(): kotlin.Boolean {
-        var b  =true
+    private fun addAdmin() {
+        var b  =false
         val en = eninsert.text.toString()
         val name = nameinsert.text.toString()
         val un = uninsert.text.toString()
@@ -53,34 +51,54 @@ class admin_sign_up : ComponentActivity() {
 
         if(en.isEmpty()){
             eninsert.error="Please enter Election name"
-            b=false
+            b=true
         }
         if(name.isEmpty()){
             nameinsert.error="Please enter name"
-            b=false
+            b=true
 
         }
         if(un.isEmpty()){
             uninsert.error="Please enter username"
-            b=false
+            b=true
 
         }
         if(pw.isEmpty()){
             pwinsert.error="Please enter password"
-            b=false
+            b=true
 
         }
         val eId = (10000000..99999999).random()
 
-        if(b) {
-           val admin = AdminModel(en,name,un,pw,"A",eId)
-           fbref1.child(un).setValue(admin).addOnCompleteListener {
-               Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
-               fbref2.child(un)
-           }.addOnFailureListener { err ->
-               Toast.makeText(this, "${err.message}", Toast.LENGTH_SHORT).show()
-           }
+        if(!b) {
+            fbref1.child(un).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()) {
+                        Toast.makeText(this@admin_sign_up, "Username Exists", Toast.LENGTH_SHORT)
+                            .show()
+                        b = true
+                    }
+                    else{
+                        val admin = AdminModel(en,name,un,pw,"A",eId)
+
+                        fbref1.child(un).setValue(admin).addOnCompleteListener {
+                            Toast.makeText(this@admin_sign_up, "Sign Up Successful", Toast.LENGTH_SHORT).show()
+                            fbref2 = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eId")
+
+                            Intent(this@admin_sign_up, MainActivity::class.java).also { startActivity(it) }
+                            finish()
+                        }.addOnFailureListener { err ->
+                            Toast.makeText(this@admin_sign_up, "${err.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@admin_sign_up, "$error", Toast.LENGTH_SHORT).show()
+                }
+            })
+
        }
-        return b
+
     }
 }
