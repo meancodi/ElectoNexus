@@ -31,6 +31,7 @@ class admin_sign_up : ComponentActivity() {
         fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account/Admin")
         val signup :  Button = findViewById(R.id.LSignupAdmin)
         var noerror : kotlin.Boolean = true
+
             signup.setOnClickListener {
                 noerror = addAdmin()
                 if (noerror) {
