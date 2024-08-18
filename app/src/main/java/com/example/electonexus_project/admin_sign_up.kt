@@ -21,6 +21,7 @@ class admin_sign_up : ComponentActivity() {
 
     private lateinit var fbref1 : DatabaseReference
     private lateinit var fbref2 : DatabaseReference
+    private lateinit var fbref3 : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -84,7 +85,8 @@ class admin_sign_up : ComponentActivity() {
                         fbref1.child(un).setValue(admin).addOnCompleteListener {
                             Toast.makeText(this@admin_sign_up, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                             fbref2 = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eId")
-
+                            fbref2.child("Voter/$un").setValue(un)
+                            fbref2.child("Status").setValue("NotActive")
                             Intent(this@admin_sign_up, MainActivity::class.java).also { startActivity(it) }
                             finish()
                         }.addOnFailureListener { err ->
