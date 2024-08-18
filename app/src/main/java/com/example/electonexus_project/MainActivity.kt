@@ -75,8 +75,8 @@ class MainActivity : ComponentActivity() {
                             ).show()
                             type = dataSnapshot.child("atype").value.toString()
                             if(type=="A"){
-                                Toast.makeText(this@MainActivity, "Login To Admin", Toast.LENGTH_SHORT).show()
-                                Intent(this@MainActivity, admin_sign_up::class.java).also { startActivity(it) }
+                                Toast.makeText(this@MainActivity, "Admin Login", Toast.LENGTH_SHORT).show()
+                                Intent(this@MainActivity, admin_dashboard::class.java).also { startActivity(it) }
                             }
                             else if(type=="V"){
                                 Toast.makeText(this@MainActivity, "Login to Voter", Toast.LENGTH_SHORT).show()

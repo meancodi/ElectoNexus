@@ -22,6 +22,8 @@ class admin_sign_up : ComponentActivity() {
     private lateinit var fbref1 : DatabaseReference
     private lateinit var fbref2 : DatabaseReference
     private lateinit var fbref3 : DatabaseReference
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
