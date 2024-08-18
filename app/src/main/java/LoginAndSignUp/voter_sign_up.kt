@@ -27,7 +27,7 @@ class voter_sign_up : ComponentActivity() {
         unInsert = findViewById(R.id.LVoterEmailAddress)
         pwInsert = findViewById(R.id.LVoterPassword)
 
-        fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account/Voter")
+        fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account")
         val signup : Button = findViewById(R.id.LVoterSignup)
 
         var noerror : kotlin.Boolean = true
@@ -61,7 +61,7 @@ class voter_sign_up : ComponentActivity() {
             b=false
         }
         if(b) {
-            val voter = VoterModel(name,username, password)
+            val voter = VoterModel(name,username, password,"V")
             fbref.child(username).setValue(voter).addOnCompleteListener {
                 Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener { err ->

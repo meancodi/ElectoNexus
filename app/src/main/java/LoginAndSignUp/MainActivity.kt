@@ -24,6 +24,8 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var fbref: DatabaseReference
 
+    var type : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,13 +37,9 @@ class MainActivity : ComponentActivity() {
         signupButton = findViewById(R.id.LSignupButton)
 
 
-        var b = true
 
         loginButton.setOnClickListener {
-            b = checkUsername()
-            if(b) {
-                Toast.makeText(this,"Activity Changed",Toast.LENGTH_SHORT).show()
-            }
+            checkUsername()
         }
         signupButton.setOnClickListener {
             Intent(this, Account_type::class.java).also { startActivity(it) }
@@ -49,14 +47,13 @@ class MainActivity : ComponentActivity() {
 
     }
 
-    private fun checkUsername(): kotlin.Boolean {
+    private fun checkUsername() {
         var b = true
-        var chk = false
         val username = un.text.toString()
         val password = pw.text.toString()
         fbref =
             FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app")
-                .getReference("Account/Admin")
+                .getReference("Account")
 
         if (username.isEmpty()) {
             un.error = "Please enter Username"
@@ -67,59 +64,40 @@ class MainActivity : ComponentActivity() {
             b = false
         }
         if (b) {
-            var chk= false
             fbref.child(username).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        Toast.makeText(this@MainActivity, "Username Found", Toast.LENGTH_SHORT).show()
-                        chk = true
                         val tpw = dataSnapshot.child("pw").value
-                        if(tpw == password){
-                            Toast.makeText(this@MainActivity, "Login Successful", Toast.LENGTH_SHORT).show()
-                        }
-                        else{
-                            Toast.makeText(this@MainActivity, "Invalid Password", Toast.LENGTH_SHORT).show()
-
-                        }
-                    }
-                    else {
-                        fbref =
-                            FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app")
-                                .getReference("Account/Voter")
-                        fbref.child(username).addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                if (dataSnapshot.exists()) {
-                                    Toast.makeText(this@MainActivity, "Username Found", Toast.LENGTH_SHORT)
-                                        .show()
-                                    val tpw = dataSnapshot.child("pw").value
-                                    if (tpw == password) {
-                                        Toast.makeText(
-                                            this@MainActivity,
-                                            "Login Successful",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    } else {
-                                        Toast.makeText(
-                                            this@MainActivity,
-                                            "Invalid Password",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-
-                                    }
-                                } else {
-                                    Toast.makeText(
-                                        this@MainActivity,
-                                        "Username Not Found",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
+                        if (tpw == password) {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Login Successful",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            type = dataSnapshot.child("atype").value.toString()
+                            if(type=="A"){
+                                Toast.makeText(this@MainActivity, "Login To Admin", Toast.LENGTH_SHORT).show()
+                                Intent(this@MainActivity, admin_sign_up::class.java).also { startActivity(it) }
+                            }
+                            else if(type=="V"){
+                                Toast.makeText(this@MainActivity, "Login to Voter", Toast.LENGTH_SHORT).show()
+                                Intent(this@MainActivity, voter_sign_up::class.java).also { startActivity(it) }
                             }
 
-                            override fun onCancelled(error: DatabaseError) {
-                                Toast.makeText(this@MainActivity, "$error", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Invalid Password",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
-                            }
-                        })
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Username Not Found",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -127,9 +105,10 @@ class MainActivity : ComponentActivity() {
                     Toast.makeText(this@MainActivity, "$error", Toast.LENGTH_SHORT).show()
 
                 }
+
             })
         }
-        return b
+
     }
 }
 

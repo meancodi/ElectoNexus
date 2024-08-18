@@ -17,7 +17,8 @@ class admin_sign_up : ComponentActivity() {
     private lateinit var uninsert : EditText
     private lateinit var pwinsert : EditText
 
-    private lateinit var fbref : DatabaseReference
+    private lateinit var fbref1 : DatabaseReference
+    private lateinit var fbref2 : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,12 +29,12 @@ class admin_sign_up : ComponentActivity() {
         uninsert = findViewById(R.id.LSignupEmailAddress)
         pwinsert = findViewById(R.id.LSignupPassword)
 
-        fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account/Admin")
+        fbref1 = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account")
         val signup :  Button = findViewById(R.id.LSignupAdmin)
-        var noerror : kotlin.Boolean = true
 
-            signup.setOnClickListener {
-                noerror = addAdmin()
+
+        signup.setOnClickListener {
+                val noerror: Boolean = addAdmin()
                 if (noerror) {
                     Intent(this, MainActivity::class.java).also { startActivity(it) }
                     finish()
@@ -44,7 +45,7 @@ class admin_sign_up : ComponentActivity() {
     }
 
     private fun addAdmin(): kotlin.Boolean {
-        var b : kotlin.Boolean =true
+        var b  =true
         val en = eninsert.text.toString()
         val name = nameinsert.text.toString()
         val un = uninsert.text.toString()
@@ -69,11 +70,13 @@ class admin_sign_up : ComponentActivity() {
             b=false
 
         }
+        val eId = (10000000..99999999).random()
 
-       if(b==true) {
-           val admin = AdminModel(en,name,un,pw)
-           fbref.child(un).setValue(admin).addOnCompleteListener {
+        if(b) {
+           val admin = AdminModel(en,name,un,pw,"A",eId)
+           fbref1.child(un).setValue(admin).addOnCompleteListener {
                Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
+               fbref2.child(un)
            }.addOnFailureListener { err ->
                Toast.makeText(this, "${err.message}", Toast.LENGTH_SHORT).show()
            }
