@@ -1,20 +1,38 @@
 package com.example.electonexus_project
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.RadioGroup
+import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class Account_type : AppCompatActivity() {
+class Account_type : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_account_type)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val radioGroup: RadioGroup = findViewById(R.id.LradioGroup)
+        val continueButton : Button = findViewById(R.id.LAccountTypeContinueButton)
+
+        continueButton.setOnClickListener {
+
+            val checkedId = radioGroup.checkedRadioButtonId
+
+            if(checkedId == R.id.LradioButtonAdmin){
+                Intent(this,admin_sign_up::class.java).also { startActivity(it) }
+            }else if (checkedId == R.id.LradioButtonVoter){
+                Intent(this,voter_sign_up::class.java).also { startActivity(it) }
+            }else{
+
+                Toast.makeText(this, "Please select an option", Toast.LENGTH_SHORT).show()
+            }
+        finish()
         }
     }
 }

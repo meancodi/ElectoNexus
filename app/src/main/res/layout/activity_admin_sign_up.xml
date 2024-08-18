@@ -46,7 +46,7 @@
             app:layout_constraintVertical_bias="0.232" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/LSignupElectionName"
             android:layout_width="304dp"
             android:layout_height="58dp"
             android:background="@drawable/custom_input"
@@ -75,7 +75,7 @@
             app:layout_constraintVertical_bias="0.384" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/LSignupName"
             android:layout_width="304dp"
             android:layout_height="58dp"
             android:background="@drawable/custom_input"
@@ -104,7 +104,7 @@
             app:layout_constraintVertical_bias="0.542" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/LSignupEmailAddress"
             android:layout_width="304dp"
             android:layout_height="58dp"
             android:background="@drawable/custom_input"
@@ -133,7 +133,7 @@
             app:layout_constraintVertical_bias="0.699" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/LSignupPassword"
             android:layout_width="304dp"
             android:layout_height="58dp"
             android:background="@drawable/custom_input"
@@ -148,7 +148,7 @@
             app:layout_constraintVertical_bias="0.76" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/LSignupAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign Up"

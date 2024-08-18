@@ -44,7 +44,7 @@
             app:layout_constraintVertical_bias="0.384" />
 
         <EditText
-            android:id="@+id/editTextText4"
+            android:id="@+id/LVoterName"
             android:layout_width="304dp"
             android:layout_height="58dp"
             android:background="@drawable/custom_input"
@@ -73,7 +73,7 @@
             app:layout_constraintVertical_bias="0.542" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress_voter"
+            android:id="@+id/LVoterEmailAddress"
             android:layout_width="304dp"
             android:layout_height="58dp"
             android:background="@drawable/custom_input"
@@ -102,7 +102,7 @@
             app:layout_constraintVertical_bias="0.699" />
 
         <EditText
-            android:id="@+id/editTextTextPassword_voter"
+            android:id="@+id/LVoterPassword"
             android:layout_width="304dp"
             android:layout_height="58dp"
             android:background="@drawable/custom_input"
@@ -117,7 +117,7 @@
             app:layout_constraintVertical_bias="0.76" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/LVoterSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign Up"
