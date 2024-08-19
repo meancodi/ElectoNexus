@@ -13,47 +13,61 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.electonexus_project.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
 
 class voter_list : ComponentActivity() {
+
     private var lastTextViewId: Int? = R.id.textView4
+
+    private lateinit var fbref : DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_voter_list)
 
-        val un : String = getCredentialsFile()
+        val eid : String = getCredentialsFile()
+
+        Toast.makeText(this@voter_list," EID : $eid",Toast.LENGTH_SHORT).show()
+
+
+        fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eid/Voter")
 
         val containerLayout: ConstraintLayout = findViewById(R.id.containervoterlist)
-        var i : Int
-        for (i in 0..20){
-            createTextView("ty")
-            /*val newTextView = TextView(this).apply {
-                id = View.generateViewId() // Generate a unique ID
-                text = "New TextView #${i + 1}"
-                textSize = 18f
-                setPadding(16, 16, 16, 16)
+
+        createTextView("hi")
+
+        fbref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+
+                    for(voter in snapshot.children){
+                        val name = voter.child("name").getValue(String::class.java)
+                        createTextView(name!!)
+                    }
+                }
+                else{
+                    Toast.makeText(this@voter_list,"Not Found in Local File",Toast.LENGTH_SHORT).show()
+                }
             }
 
-            containerLayout.addView(newTextView)
-
-            applyConstraintsToView(containerLayout, newTextView)
-
-            // Update the last IDs
-            lastTextViewId = newTextView.id*/
-
-        }
-
-
-
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@voter_list, "$error", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
     private fun createTextView(name : String){
         val containerLayout: ConstraintLayout = findViewById(R.id.containervoterlist)
         val newTextView = TextView(this).apply {
             id = View.generateViewId() // Generate a unique ID
-            text = "$name"
+            text = name
             textSize = 18f
             setPadding(16, 16, 16, 16)
         }
@@ -62,22 +76,17 @@ class voter_list : ComponentActivity() {
 
         applyConstraintsToView(containerLayout, newTextView)
 
-        // Update the last IDs
         lastTextViewId = newTextView.id
     }
     private fun applyConstraintsToView(parent: ConstraintLayout, textView: TextView) {
         val constraintSet = ConstraintSet()
         constraintSet.clone(parent)
 
-        // Apply constraints to the TextView
 
-            // Position the new TextView below the last TextView
         constraintSet.connect(textView.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
         constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(60f) )
-        // constraintSet.connect(textView.id, ConstraintSet.END, parent.id, ConstraintSet.END, 16)
 
-        // Apply constraints to the Button
 
 
         constraintSet.applyTo(parent)
@@ -88,27 +97,21 @@ class voter_list : ComponentActivity() {
     }
     private fun getCredentialsFile(): String {
         try {
-            // Define the file name
             val fileName = "credentials.txt"
-           // val un : TextView = findViewById(R.id.electionname)
-            // Open the file for reading
             val fileInputStream: FileInputStream = openFileInput(fileName)
             val inputStreamReader = InputStreamReader(fileInputStream)
             val bufferedReader = BufferedReader(inputStreamReader)
 
-            // Initialize variables to hold the username and password
             var username: String? = null
             var Acctype: String? = null
 
-            // Read the file line by line
             var line: String?
             while (bufferedReader.readLine().also { line = it } != null) {
                 line?.let {
                     when {
-                        it.startsWith("Username:") -> {
+                        it.startsWith("eID:") -> {
                             username = it.substringAfter("eID:").trim()
                             return username!!
-                            //un.setText("ELECTION NAME : $username")
                         }
                         it.startsWith("Acctype:") -> {
                             Acctype = it.substringAfter("Acctype:").trim()
@@ -117,20 +120,16 @@ class voter_list : ComponentActivity() {
                 }
             }
 
-            // Close the reader
             bufferedReader.close()
 
-            // Display the username and password in separate Toast messages
             if (username != null && Acctype != null) {
                 Toast.makeText(this, "Username: $username", Toast.LENGTH_LONG).show()
                 Toast.makeText(this, "Password: $Acctype", Toast.LENGTH_LONG).show()
             } else {
-                // If either username or password is missing
                 Toast.makeText(this, "Incomplete credentials found", Toast.LENGTH_SHORT).show()
             }
 
         } catch (e: Exception) {
-            // If the file is not found or other errors occur
             Toast.makeText(this, "No credentials found", Toast.LENGTH_SHORT).show()
         }
         return ""

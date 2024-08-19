@@ -42,7 +42,7 @@ class admin_dashboard : ComponentActivity() {
 
         setCredentialsFile()
         voterlistButton.setOnClickListener {
-            Intent(this, voter_list::class.java).also { startActivity(it) }
+            Intent(this, voter_list::class.java).also{startActivity(it) }
         }
         candidatelistButton.setOnClickListener {
             Intent(this, candidate_list::class.java).also { startActivity(it) }
@@ -104,14 +104,13 @@ class admin_dashboard : ComponentActivity() {
             // Close the reader
             bufferedReader.close()
 
-            // Display the username and password in separate Toast messages
-            if (username != null && Acctype != null) {
+            /*if (username != null && Acctype != null) {
                 Toast.makeText(this, "Username: $username", Toast.LENGTH_LONG).show()
                 Toast.makeText(this, "Password: $Acctype", Toast.LENGTH_LONG).show()
             } else {
                 // If either username or password is missing
                 Toast.makeText(this, "Incomplete credentials found", Toast.LENGTH_SHORT).show()
-            }
+            }*/
 
         } catch (e: Exception) {
             // If the file is not found or other errors occur
