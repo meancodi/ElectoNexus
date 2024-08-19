@@ -1,17 +1,21 @@
-package com.example.electonexus_project;
+package com.example.electonexus_project
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Class
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
@@ -19,56 +23,104 @@ import java.io.InputStreamReader
 class Voterrequest : ComponentActivity() {
 
     private var lastTextViewId: Int? = R.id.textViewvr
+
+    private lateinit var eid : String
+
+    private lateinit var fbref : DatabaseReference
+    private var blist = mutableListOf("")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_voterrequest)
-        val i:Int=0
-        for(i in 0..10) {
-            createView("bello+$i","killo+$i")
+
+        eid = getCredentialsFile()
+
+        fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eid/Voter")
+        fbinitialise()
+
+    }
+    private fun fbinitialise(){
+        fbref.get().addOnSuccessListener { snapshot ->
+            if(snapshot.exists()){
+                for(voter in snapshot.children){
+                    if(voter.key == "Voter"){
+                        continue
+                    }
+                    createView(voter)
+                }
+            }
+        }.addOnFailureListener{error ->
+            Toast.makeText(this@Voterrequest,"In addValue ${error.message}",Toast.LENGTH_SHORT).show()
+
         }
+    }
+    private fun createView(voter : DataSnapshot){
+        val uname = voter.key
+        val name = voter.child("name").getValue(String::class.java)
+        val stat = voter.child("reqstat").getValue(String::class.java)
+        if(stat != "ReqSent"){
+            return
+        }
+
+
+            val containerLayout: ConstraintLayout = findViewById(R.id.containervoterrequestlist)
+            val newTextView = TextView(this).apply {
+                id = View.generateViewId() // Generate a unique ID
+                text = name
+                textSize = 18f
+                setPadding(16, 16, 16, 16)
+            }
+            val yButton = Button(this).apply {
+                id = View.generateViewId() // Generate a unique ID
+                text = "Yes"
+                tag = "ybtn+$uname"
+                textSize = 18f
+                setPadding(16, 16, 16, 16)
+
+            }
+            val nButton = Button(this).apply {
+                id = View.generateViewId() // Generate a unique ID
+                text = "No"
+                tag = "nbtn+$uname"
+                textSize = 18f
+                setPadding(16, 16, 16, 16)
+
+            }
+            yButton.setOnClickListener {
+                val updatedstatus = "Accepted"
+                fbref.child("$uname/reqstat").setValue(updatedstatus)
+                Toast.makeText(this, "$uname is updated hopefully", Toast.LENGTH_SHORT).show()
+                delbutton()
+                fbinitialise()
+            }
+            nButton.setOnClickListener {
+                val updatedstatus = "Rejected"
+                fbref.child("$uname/reqstat").setValue(updatedstatus)
+                Toast.makeText(this, "$uname is updated hopefully", Toast.LENGTH_SHORT).show()
+                delbutton()
+                fbinitialise()
+            }
+            containerLayout.addView(newTextView)
+            containerLayout.addView(yButton)
+            containerLayout.addView(nButton)
+
+            applyConstraintsToView(containerLayout, newTextView,yButton,nButton)
+
+            lastTextViewId = newTextView.id
+
+
 
 
     }
-    private fun createView(name : String,uname:String){
-        val containerLayout: ConstraintLayout = findViewById(R.id.containervoterrequestlist)
-        val newTextView = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
-            text = name
-            textSize = 18f
-            setPadding(16, 16, 16, 16)
+    private fun delbutton(){
+        val layout = findViewById<ViewGroup>(R.id.containervoterrequestlist)
+        for(i in layout.childCount -1 downTo  1){
+            val child = layout.getChildAt(i)
+            if(child.id != R.id.textViewvr){}
+            layout.removeViewAt(i)
         }
-        val yButton = Button(this).apply {
-            id = View.generateViewId() // Generate a unique ID
-            text = "Yes"
-            tag = "ybtn+$uname"
-            textSize = 18f
-            setPadding(16, 16, 16, 16)
-
-        }
-        val nButton = Button(this).apply {
-            id = View.generateViewId() // Generate a unique ID
-            text = "No"
-            tag = "nbtn+$uname"
-            textSize = 18f
-            setPadding(16, 16, 16, 16)
-
-        }
-        yButton.setOnClickListener {
-            val yy : String = "yes + $uname"
-            Toast.makeText(this, yy, Toast.LENGTH_SHORT).show()
-        }
-        nButton.setOnClickListener {
-            val yy : String = "no + $uname"
-            Toast.makeText(this, yy, Toast.LENGTH_SHORT).show()
-        }
-        containerLayout.addView(newTextView)
-        containerLayout.addView(yButton)
-        containerLayout.addView(nButton)
-
-        applyConstraintsToView(containerLayout, newTextView,yButton,nButton)
-
-        lastTextViewId = newTextView.id
+        lastTextViewId = R.id.textViewvr
     }
     private fun applyConstraintsToView(parent: ConstraintLayout, textView: TextView,ybutton : Button,nbutton: Button) {
         val constraintSet = ConstraintSet()
