@@ -2,7 +2,9 @@ package com.example.electonexus_project
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -35,7 +37,12 @@ class admin_dashboard : ComponentActivity() {
                 .getReference("Account")
 
         setContentView(R.layout.activity_admin_dashboard)
+        val voterlistButton : Button = findViewById(R.id.Avoterlistbutton)
+
         setCredentialsFile()
+        voterlistButton.setOnClickListener {
+            Intent(this, voter_list::class.java).also { startActivity(it) }
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -105,25 +112,5 @@ class admin_dashboard : ComponentActivity() {
             Toast.makeText(this, "No credentials found", Toast.LENGTH_SHORT).show()
         }
     }
-    /*private fun getEn(un : String): String{
-        var foundun: String = ""
-        fbref.child(un).addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    foundun = snapshot.child("en").value
-                }
-                else{
-                    Toast.makeText(this@admin_dashboard,"Not Found in Local File",Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@admin_dashboard, "$error", Toast.LENGTH_SHORT).show()
-            }
-        })
-        Toast.makeText(this@admin_dashboard, "In getEn $foundun", Toast.LENGTH_SHORT).show()
-
-        return foundun
-    }*/
 
 }
