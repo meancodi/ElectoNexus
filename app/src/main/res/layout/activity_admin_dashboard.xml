@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.664" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/AElectionStatus"
         android:layout_width="140dp"
         android:layout_height="57dp"
         android:background="@drawable/custom_button"
@@ -120,7 +120,7 @@
         app:layout_constraintVertical_bias="0.833" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/AElectionResults"
         android:layout_width="140dp"
         android:layout_height="57dp"
         android:background="@drawable/custom_button"
