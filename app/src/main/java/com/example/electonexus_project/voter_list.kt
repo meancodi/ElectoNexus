@@ -106,7 +106,7 @@ class voter_list : ComponentActivity() {
                 line?.let {
                     when {
                         it.startsWith("Username:") -> {
-                            username = it.substringAfter("Username:").trim()
+                            username = it.substringAfter("eID:").trim()
                             return username!!
                             //un.setText("ELECTION NAME : $username")
                         }

@@ -82,7 +82,9 @@ class MainActivity : ComponentActivity() {
                             type = dataSnapshot.child("atype").value.toString()
                             if(type=="A"){
                                 Toast.makeText(this@MainActivity, "Admin Login", Toast.LENGTH_SHORT).show()
-                                saveCredentialsToFile(username, "A")
+                                val eID = dataSnapshot.child("eid").value.toString()
+                                val elname = dataSnapshot.child("en").value.toString()
+                                saveCredentialsToFile(username, "A",eID,elname)
                                 Intent(this@MainActivity, admin_dashboard::class.java).also { startActivity(it) }
                             }
                             else if(type=="V"){
@@ -116,7 +118,7 @@ class MainActivity : ComponentActivity() {
         }
 
     }
-    private fun saveCredentialsToFile(username: String, Acctype: String) {
+    private fun saveCredentialsToFile(username: String, Acctype: String,eID : String,elname : String) {
         try {
             // Define the file name and directory
             val fileName = "credentials.txt"
@@ -126,6 +128,8 @@ class MainActivity : ComponentActivity() {
             // Write username and password to the file
             outputStreamWriter.write("Username: $username\n")
             outputStreamWriter.write("Acctype: $Acctype\n")
+            outputStreamWriter.write("eID: $eID\n")
+            outputStreamWriter.write("elname: $elname\n")
 
             // Close the writer
             outputStreamWriter.close()
