@@ -52,8 +52,8 @@ class admin_sign_up : ComponentActivity() {
         val un = uninsert.text.toString()
         val pw = pwinsert.text.toString()
 
-        if(en.isEmpty()||(en.length>10)){
-            eninsert.error="Please enter Election name under 10 characters"
+        if(en.isEmpty()||(en.length>20)){
+            eninsert.error="Please enter Election name under 20 characters"
             b=true
         }
         if(name.isEmpty()||(name.length>10)){
@@ -87,7 +87,9 @@ class admin_sign_up : ComponentActivity() {
                         fbref1.child(un).setValue(admin).addOnCompleteListener {
                             Toast.makeText(this@admin_sign_up, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                             fbref2 = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eId")
-                            fbref2.child("Voter/$un").setValue(un)
+                            fbref2.child("Voter/$un/name").setValue(name)
+                            fbref2.child("/admin").setValue(un)
+                            fbref2.child("/ename").setValue(en)
                             fbref2.child("Status").setValue("NotActive")
                             Intent(this@admin_sign_up, MainActivity::class.java).also { startActivity(it) }
                             finish()
