@@ -9,6 +9,11 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import com.google.firebase.components.Component
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
@@ -17,10 +22,17 @@ class admin_dashboard : ComponentActivity() {
 
     //private lateinit var un: TextView
     //private lateinit var Acctype: TextView
+
+    private lateinit var fbref : DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
     // un = findViewById(R.id.electionname)
+
+        fbref =
+            FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app")
+                .getReference("Account")
 
         setContentView(R.layout.activity_admin_dashboard)
         setCredentialsFile()
@@ -31,7 +43,8 @@ class admin_dashboard : ComponentActivity() {
         try {
             // Define the file name
             val fileName = "credentials.txt"
-            val un : TextView = findViewById(R.id.electionname)
+            val enview : TextView = findViewById(R.id.electionname)
+            val eidview : TextView = findViewById(R.id.electionid)
             // Open the file for reading
             val fileInputStream: FileInputStream = openFileInput(fileName)
             val inputStreamReader = InputStreamReader(fileInputStream)
@@ -48,7 +61,25 @@ class admin_dashboard : ComponentActivity() {
                     when {
                         it.startsWith("Username:") -> {
                             username = it.substringAfter("Username:").trim()
-                            un.setText("ELECTION NAME : $username")
+                            fbref.child(username!!).addListenerForSingleValueEvent(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if(snapshot.exists()){
+                                        val foundun = snapshot.child("en").value
+                                        enview.setText("ELECTION NAME : $foundun")
+                                        val foundeid = snapshot.child("eid").value
+                                        eidview.setText("ELECTION ID : $foundeid")
+
+                                    }
+                                    else{
+                                        Toast.makeText(this@admin_dashboard,"Not Found in Local File",Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    Toast.makeText(this@admin_dashboard, "$error", Toast.LENGTH_SHORT).show()
+                                }
+                            })
+
                         }
                         it.startsWith("Acctype:") -> {
                             Acctype = it.substringAfter("Acctype:").trim()
@@ -74,5 +105,25 @@ class admin_dashboard : ComponentActivity() {
             Toast.makeText(this, "No credentials found", Toast.LENGTH_SHORT).show()
         }
     }
+    /*private fun getEn(un : String): String{
+        var foundun: String = ""
+        fbref.child(un).addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    foundun = snapshot.child("en").value
+                }
+                else{
+                    Toast.makeText(this@admin_dashboard,"Not Found in Local File",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@admin_dashboard, "$error", Toast.LENGTH_SHORT).show()
+            }
+        })
+        Toast.makeText(this@admin_dashboard, "In getEn $foundun", Toast.LENGTH_SHORT).show()
+
+        return foundun
+    }*/
 
 }
