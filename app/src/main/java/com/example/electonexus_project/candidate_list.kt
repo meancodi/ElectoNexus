@@ -11,40 +11,50 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
 
 class candidate_list : ComponentActivity() {
+
     private var lastTextViewId: Int? = R.id.textViewcl
+
+    private lateinit var fbref : DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_candidate_list)
 
-        val un : String = getCredentialsFile()
+        val eid : String = getCredentialsFile()
 
         val containerLayout: ConstraintLayout = findViewById(R.id.containercandidatelist)
-        var i : Int
-        for (i in 0..20){
-            createTextView("ghfvg")
-            /*val newTextView = TextView(this).apply {
-                id = View.generateViewId() // Generate a unique ID
-                text = "New TextView #${i + 1}"
-                textSize = 18f
-                setPadding(16, 16, 16, 16)
+
+        fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eid/Candidate")
+
+        fbref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+
+                    for(candidate in snapshot.children){
+                        val name = candidate.child("name").getValue(String::class.java)
+                        createTextView(name!!)
+                    }
+                }
+                else{
+                    Toast.makeText(this@candidate_list,"Not Found in Local File",Toast.LENGTH_SHORT).show()
+                }
             }
 
-            containerLayout.addView(newTextView)
-
-            applyConstraintsToView(containerLayout, newTextView)
-
-            // Update the last IDs
-            lastTextViewId = newTextView.id*/
-
-        }
-
-
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@candidate_list, "$error", Toast.LENGTH_SHORT).show()
+            }
+        })
 
     }
     private fun createTextView(name : String){
@@ -103,7 +113,7 @@ class candidate_list : ComponentActivity() {
             while (bufferedReader.readLine().also { line = it } != null) {
                 line?.let {
                     when {
-                        it.startsWith("Username:") -> {
+                        it.startsWith("eID:") -> {
                             username = it.substringAfter("eID:").trim()
                             return username!!
                             //un.setText("ELECTION NAME : $username")

@@ -35,14 +35,11 @@ class voter_list : ComponentActivity() {
 
         val eid : String = getCredentialsFile()
 
-        Toast.makeText(this@voter_list," EID : $eid",Toast.LENGTH_SHORT).show()
 
 
         fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eid/Voter")
 
         val containerLayout: ConstraintLayout = findViewById(R.id.containervoterlist)
-
-        createTextView("hi")
 
         fbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

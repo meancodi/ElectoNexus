@@ -81,7 +81,6 @@ class MainActivity : ComponentActivity() {
                             ).show()
                             type = dataSnapshot.child("atype").value.toString()
                             if(type=="A"){
-                                Toast.makeText(this@MainActivity, "Admin Login", Toast.LENGTH_SHORT).show()
                                 val eID = dataSnapshot.child("eid").value.toString()
                                 val elname = dataSnapshot.child("en").value.toString()
                                 saveCredentialsToFile(username, "A",eID,elname)
@@ -133,7 +132,6 @@ class MainActivity : ComponentActivity() {
 
             outputStreamWriter.close()
 
-            Toast.makeText(this, "Credentials saved to file", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(this, "Failed to save credentials", Toast.LENGTH_SHORT).show()
