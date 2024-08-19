@@ -40,6 +40,7 @@ class admin_dashboard : ComponentActivity() {
         val voterlistButton : Button = findViewById(R.id.Avoterlistbutton)
         val candidatelistButton : Button = findViewById(R.id.Acandidatelistbutton)
         val voterrequestButton : Button = findViewById(R.id.Avoterrequestbutton)
+        val candidaterequestbutton : Button = findViewById(R.id.Acandidaterequestbutton)
 
         setCredentialsFile()
         voterlistButton.setOnClickListener {
@@ -50,6 +51,9 @@ class admin_dashboard : ComponentActivity() {
         }
         voterrequestButton.setOnClickListener {
             Intent(this, Voterrequest::class.java).also { startActivity(it) }
+        }
+        candidaterequestbutton.setOnClickListener {
+            Intent(this, candidate_request::class.java).also { startActivity(it) }
         }
 
 

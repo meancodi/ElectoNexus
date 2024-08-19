@@ -42,6 +42,10 @@ class candidate_list : ComponentActivity() {
                 if(snapshot.exists()){
 
                     for(candidate in snapshot.children){
+                        val chk = candidate.child("reqstat").getValue(String::class.java)
+                        if(chk=="ReqSent"||chk == "Rejected"){
+                            continue
+                        }
                         val name = candidate.child("name").getValue(String::class.java)
                         createTextView(name!!)
                     }
@@ -55,7 +59,6 @@ class candidate_list : ComponentActivity() {
                 Toast.makeText(this@candidate_list, "$error", Toast.LENGTH_SHORT).show()
             }
         })
-
     }
     private fun createTextView(name : String){
         val containerLayout: ConstraintLayout = findViewById(R.id.containercandidatelist)

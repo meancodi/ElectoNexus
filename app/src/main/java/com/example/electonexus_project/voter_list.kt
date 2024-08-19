@@ -46,6 +46,10 @@ class voter_list : ComponentActivity() {
                 if(snapshot.exists()){
 
                     for(voter in snapshot.children){
+                        val chk = voter.child("reqstat").getValue(String::class.java)
+                        if(chk=="ReqSent"||chk == "Rejected"){
+                            continue
+                        }
                         val name = voter.child("name").getValue(String::class.java)
                         createTextView(name!!)
                     }

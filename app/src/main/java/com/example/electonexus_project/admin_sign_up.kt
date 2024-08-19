@@ -88,6 +88,7 @@ class admin_sign_up : ComponentActivity() {
                             Toast.makeText(this@admin_sign_up, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                             fbref2 = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eId")
                             fbref2.child("Voter/$un/name").setValue(name)
+                            fbref2.child("Voter/$un/reqstat").setValue("Accepted")
                             fbref2.child("/admin").setValue(un)
                             fbref2.child("/ename").setValue(en)
                             fbref2.child("Status").setValue("NotActive")
