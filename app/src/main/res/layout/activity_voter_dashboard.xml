@@ -100,7 +100,7 @@
         app:layout_constraintVertical_bias="0.708" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/Vcandidateapply"
         android:layout_width="174dp"
         android:layout_height="98dp"
         android:background="@drawable/custom_button"

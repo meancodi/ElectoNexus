@@ -48,6 +48,8 @@
             android:exported="false" />
         <activity android:name=".voter_dashboard"
             android:exported="false"/>
+        <activity android:name=".voter_send_nomination"
+            android:exported="false"/>
 
         <activity
             android:name=".MainActivity"

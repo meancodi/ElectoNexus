@@ -2,41 +2,40 @@ package com.example.electonexus_project
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.FirebaseDatabase
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
 
-class voter_dashboard : ComponentActivity(){
+class voter_send_nomination : ComponentActivity(){
 
-    private lateinit var fbref : DatabaseReference
-
+    private lateinit var fbrefacc : DatabaseReference
+    private lateinit var fbrefelc : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_voter_dashboard)
-        setCredentialsFile()
+        setContentView(R.layout.activity_send_nomination)
+        val un = getCredentialsFile()
 
-        val vcandidatebutton : Button = findViewById(R.id.Vcandidateapply)
-        vcandidatebutton.setOnClickListener {
-            Intent(this, voter_send_nomination::class.java).also { startActivity(it) }
-        }
+        val eidtext : TextView = findViewById(R.id.Vsneid)
+        val nametext : TextView = findViewById(R.id.Vsnname)
+
+
+        fbrefacc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account")
+        fbrefelc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/")
 
     }
-    private fun setCredentialsFile() {
+    private fun getCredentialsFile() :String {
         try {
             // Define the file name
             val fileName = "credentials.txt"
-            val votername : TextView = findViewById(R.id.voterdbname)
-            val voterun : TextView = findViewById(R.id.voterdbun)
+            //val votername : TextView = findViewById(R.id.voterdbname)
+           // val voterun : TextView = findViewById(R.id.voterdbun)
             // Open the file for reading
             val fileInputStream: FileInputStream = openFileInput(fileName)
             val inputStreamReader = InputStreamReader(fileInputStream)
@@ -53,13 +52,11 @@ class voter_dashboard : ComponentActivity(){
                     when {
                         it.startsWith("Username:") -> {
                             username = it.substringAfter("Username:").trim()
-                            voterun.setText(username)
-
-
+                            return username!!
+                            //un.setText("ELECTION NAME : $username")
                         }
-                        it.startsWith("elname:") -> {
-                            Accname = it.substringAfter("elname:").trim()
-                            votername.setText(Accname)
+                        it.startsWith("Acctype:") -> {
+                          //  Acctype = it.substringAfter("Acctype:").trim()
                         }
                     }
                 }
@@ -80,5 +77,6 @@ class voter_dashboard : ComponentActivity(){
             // If the file is not found or other errors occur
             Toast.makeText(this, "No credentials found", Toast.LENGTH_SHORT).show()
         }
+        return ""
     }
 }

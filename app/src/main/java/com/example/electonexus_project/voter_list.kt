@@ -41,7 +41,7 @@ class voter_list : ComponentActivity() {
 
         val containerLayout: ConstraintLayout = findViewById(R.id.containervoterlist)
 
-        fbref.addValueEventListener(object : ValueEventListener {
+        fbref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
 
