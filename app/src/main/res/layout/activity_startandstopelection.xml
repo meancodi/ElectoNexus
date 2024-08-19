@@ -18,10 +18,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591" />
+        app:layout_constraintVertical_bias="0.706" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -35,11 +35,11 @@
         app:srcCompat="@drawable/img" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView3"
         android:layout_width="81dp"
         android:layout_height="29dp"
-        android:text="Status"
         android:fontFamily="@font/alegreya_sans_sc_medium"
+        android:text="Status"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textFontWeight="400"
@@ -49,7 +49,7 @@
         app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354" />
+        app:layout_constraintVertical_bias="0.457" />
 
     <TextView
         android:id="@+id/AtextViewStatus"
@@ -65,22 +65,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintVertical_bias="0.559" />
 
-    <Button
-        android:id="@+id/AStatusStopButton"
-        android:layout_width="238dp"
-        android:layout_height="50dp"
-        android:background="@drawable/custom_button"
-        android:text="Stop"
-        android:textColor="#FFFDFD"
-        android:textSize="15sp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="262dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/alegreya_sans_sc_medium"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Start/Stop Election"
+        android:textSize="23dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741" />
+        app:layout_constraintVertical_bias="0.373" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
