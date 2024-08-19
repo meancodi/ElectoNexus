@@ -9,7 +9,7 @@
     tools:context=".Startandstopelection">
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/AStatusStartButton"
         android:layout_width="238dp"
         android:layout_height="50dp"
         android:background="@drawable/custom_button"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.354" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/AtextViewStatus"
         android:layout_width="317dp"
         android:layout_height="50dp"
         android:background="@drawable/custom_button2"
@@ -65,10 +65,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintVertical_bias="0.428" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/AStatusStopButton"
         android:layout_width="238dp"
         android:layout_height="50dp"
         android:background="@drawable/custom_button"

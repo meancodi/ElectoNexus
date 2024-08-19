@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="213dp"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/containerresult"
     android:layout_width="match_parent"
     android:background="#8F9B97"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".result">
 
     <ImageView
@@ -20,7 +29,7 @@
         app:srcCompat="@drawable/img" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewpv"
         android:layout_width="386dp"
         android:layout_height="41dp"
         android:fontFamily="@font/alegreya_sans_sc_medium"
@@ -36,4 +45,10 @@
         app:layout_constraintVertical_bias="0.247" />
 
 
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

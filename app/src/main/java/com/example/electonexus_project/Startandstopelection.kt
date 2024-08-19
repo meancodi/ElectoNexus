@@ -1,21 +1,74 @@
 package com.example.electonexus_project;
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.electonexus_project.R
+import java.io.BufferedReader
+import java.io.FileInputStream
+import java.io.InputStreamReader
 
-class Startandstopelection : AppCompatActivity() {
+class Startandstopelection : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_startandstopelection)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        val eid : String = getCredentialsFile()
+        var textviewstatus : TextView = findViewById(R.id.AtextViewStatus)
+        var startButton : Button = findViewById(R.id.AStatusStartButton)
+        var stopButton : Button = findViewById(R.id.AStatusStopButton)
+
+        startButton.setOnClickListener {
+            textviewstatus.setText("started")
         }
+        stopButton.setOnClickListener {
+            textviewstatus.setText("ended")
+        }
+
+    }
+    private fun getCredentialsFile(): String {
+        try {
+            val fileName = "credentials.txt"
+            val fileInputStream: FileInputStream = openFileInput(fileName)
+            val inputStreamReader = InputStreamReader(fileInputStream)
+            val bufferedReader = BufferedReader(inputStreamReader)
+
+            var username: String? = null
+            var Acctype: String? = null
+
+            var line: String?
+            while (bufferedReader.readLine().also { line = it } != null) {
+                line?.let {
+                    when {
+                        it.startsWith("eID:") -> {
+                            username = it.substringAfter("eID:").trim()
+                            return username!!
+                        }
+                        it.startsWith("Acctype:") -> {
+                            Acctype = it.substringAfter("Acctype:").trim()
+                        }
+                    }
+                }
+            }
+
+            bufferedReader.close()
+
+            if (username != null && Acctype != null) {
+                Toast.makeText(this, "Username: $username", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Password: $Acctype", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Incomplete credentials found", Toast.LENGTH_SHORT).show()
+            }
+
+        } catch (e: Exception) {
+            Toast.makeText(this, "No credentials found", Toast.LENGTH_SHORT).show()
+        }
+        return ""
     }
 }
