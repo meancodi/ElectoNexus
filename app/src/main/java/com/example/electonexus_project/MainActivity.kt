@@ -131,14 +131,11 @@ class MainActivity : ComponentActivity() {
             outputStreamWriter.write("eID: $eID\n")
             outputStreamWriter.write("elname: $elname\n")
 
-            // Close the writer
             outputStreamWriter.close()
 
-            // Notify the user that the file has been created
             Toast.makeText(this, "Credentials saved to file", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             e.printStackTrace()
-            // Show an error message if file operations fail
             Toast.makeText(this, "Failed to save credentials", Toast.LENGTH_SHORT).show()
         }
     }
