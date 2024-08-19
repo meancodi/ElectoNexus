@@ -52,22 +52,22 @@ class admin_sign_up : ComponentActivity() {
         val un = uninsert.text.toString()
         val pw = pwinsert.text.toString()
 
-        if(en.isEmpty()){
-            eninsert.error="Please enter Election name"
+        if(en.isEmpty()||(en.length>10)){
+            eninsert.error="Please enter Election name under 10 characters"
             b=true
         }
-        if(name.isEmpty()){
-            nameinsert.error="Please enter name"
-            b=true
-
-        }
-        if(un.isEmpty()){
-            uninsert.error="Please enter username"
+        if(name.isEmpty()||(name.length>10)){
+            nameinsert.error="Please enter name under 10 characters"
             b=true
 
         }
-        if(pw.isEmpty()){
-            pwinsert.error="Please enter password"
+        if(un.isEmpty()||(un.length>10)){
+            uninsert.error="Please enter username under 10 characters"
+            b=true
+
+        }
+        if(pw.isEmpty()||(pw.length>10)){
+            pwinsert.error="Please enter password under 10 characters"
             b=true
 
         }

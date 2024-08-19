@@ -50,16 +50,16 @@ class voter_sign_up : ComponentActivity() {
         val username = unInsert.text.toString()
         val password = pwInsert.text.toString()
 
-        if(name.isEmpty()){
-            nameInsert.error = "Please enter name"
+        if(name.isEmpty()||(name.length>10)){
+            nameInsert.error = "Please enter name under 10 characters"
             b=false
         }
-        if(username.isEmpty()){
-            nameInsert.error = "Please enter username"
+        if(username.isEmpty()||(username.length>10)){
+            nameInsert.error = "Please enter username under 10 characters"
             b=false
         }
-        if(password.isEmpty()){
-            nameInsert.error = "Please enter password"
+        if(password.isEmpty()||(password.length>10)){
+            nameInsert.error = "Please enter password under 10 characters"
             b=false
         }
         if(b) {
