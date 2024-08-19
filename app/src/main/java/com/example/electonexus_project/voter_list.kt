@@ -29,7 +29,7 @@ class voter_list : ComponentActivity() {
         val containerLayout: ConstraintLayout = findViewById(R.id.containervoterlist)
         var i : Int
         for (i in 0..20){
-            createTextView("")
+            createTextView("ty")
             /*val newTextView = TextView(this).apply {
                 id = View.generateViewId() // Generate a unique ID
                 text = "New TextView #${i + 1}"

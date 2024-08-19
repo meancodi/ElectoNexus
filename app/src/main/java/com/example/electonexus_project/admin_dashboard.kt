@@ -38,11 +38,17 @@ class admin_dashboard : ComponentActivity() {
 
         setContentView(R.layout.activity_admin_dashboard)
         val voterlistButton : Button = findViewById(R.id.Avoterlistbutton)
+        val candidatelistButton : Button = findViewById(R.id.Acandidatelistbutton)
 
         setCredentialsFile()
         voterlistButton.setOnClickListener {
             Intent(this, voter_list::class.java).also { startActivity(it) }
         }
+        candidatelistButton.setOnClickListener {
+            Intent(this, candidate_list::class.java).also { startActivity(it) }
+        }
+
+
     }
 
     @SuppressLint("SetTextI18n")
