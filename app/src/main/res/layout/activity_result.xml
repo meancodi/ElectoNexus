@@ -23,6 +23,7 @@
         android:layout_height="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/half_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.062"
@@ -30,24 +31,19 @@
 
     <TextView
         android:id="@+id/textViewpv"
-        android:layout_width="386dp"
-        android:layout_height="41dp"
+        android:layout_width="355dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="200dp"
         android:fontFamily="@font/alegreya_sans_sc_medium"
-        android:text="Participated Voters : "
+        android:text="   FINAL RESULTS  : "
         android:textColor="#181818"
         android:textFontWeight="500"
         android:textSize="23dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247" />
-
-
-
-
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

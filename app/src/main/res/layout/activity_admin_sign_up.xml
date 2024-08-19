@@ -20,129 +20,143 @@
 
         <ImageView
             android:id="@+id/Ladminsulogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="163dp"
+            android:layout_height="74dp"
             android:background="@drawable/half_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.026"
+            app:layout_constraintVertical_bias="0.083"
             app:srcCompat="@drawable/half_logo" />
 
         <TextView
             android:id="@+id/Lentitle"
             android:layout_width="251dp"
             android:layout_height="48dp"
-            android:text="Election Name"
-            android:textAlignment="viewStart"
+            android:fontFamily="@font/gowun_dodum"
+            android:textSize="18sp"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:text="   ELECTION NAME:"
+            android:textAlignment="viewStart"
+            android:textFontWeight="600"
+
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.405"
+            app:layout_constraintHorizontal_bias="0.337"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.232" />
+            app:layout_constraintVertical_bias="0.278" />
 
         <EditText
             android:id="@+id/LSignupElectionName"
-            android:layout_width="304dp"
-            android:layout_height="58dp"
+            android:layout_width="312dp"
+            android:layout_height="48dp"
             android:background="@drawable/custom_input"
             android:ems="10"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.609"
+            app:layout_constraintHorizontal_bias="0.616"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.286" />
+            app:layout_constraintVertical_bias="0.322"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/Lnametitle"
             android:layout_width="338dp"
             android:layout_height="55dp"
-            android:text="Name"
+            android:fontFamily="@font/gowun_dodum"
+            android:text="NAME:"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textFontWeight="600"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.901"
+            app:layout_constraintHorizontal_bias="0.835"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.384" />
+            app:layout_constraintVertical_bias="0.437" />
 
         <EditText
             android:id="@+id/LSignupName"
-            android:layout_width="304dp"
-            android:layout_height="58dp"
+            android:layout_width="312dp"
+            android:layout_height="48dp"
             android:background="@drawable/custom_input"
             android:ems="10"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.609"
+            app:layout_constraintHorizontal_bias="0.616"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.435" />
+            app:layout_constraintVertical_bias="0.472"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/LunTItle"
             android:layout_width="308dp"
             android:layout_height="54dp"
-            android:text="Username"
+            android:fontFamily="@font/gowun_dodum"
+            android:text="USERNAME:"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textFontWeight="600"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.633"
+            app:layout_constraintHorizontal_bias="0.592"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.542" />
+            app:layout_constraintVertical_bias="0.592" />
 
         <EditText
             android:id="@+id/LSignupEmailAddress"
-            android:layout_width="304dp"
-            android:layout_height="58dp"
+            android:layout_width="312dp"
+            android:layout_height="48dp"
             android:background="@drawable/custom_input"
             android:ems="10"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.609"
+            app:layout_constraintHorizontal_bias="0.616"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.594" />
+            app:layout_constraintVertical_bias="0.631"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/Lpwtitle"
             android:layout_width="308dp"
             android:layout_height="54dp"
-            android:text="Password"
+            android:fontFamily="@font/gowun_dodum"
+            android:text="PASSWORD:"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textFontWeight="600"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.633"
+            app:layout_constraintHorizontal_bias="0.592"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.699" />
+            app:layout_constraintVertical_bias="0.742" />
 
         <EditText
             android:id="@+id/LSignupPassword"
-            android:layout_width="304dp"
-            android:layout_height="58dp"
+            android:layout_width="312dp"
+            android:layout_height="48dp"
             android:background="@drawable/custom_input"
             android:ems="10"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.609"
+            app:layout_constraintHorizontal_bias="0.616"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.76" />
+            app:layout_constraintVertical_bias="0.781"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/LSignupAdmin"

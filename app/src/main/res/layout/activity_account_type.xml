@@ -19,84 +19,79 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+
         <TextView
-            android:id="@+id/Lacctypetext"
-            android:layout_width="287dp"
-            android:layout_height="68dp"
-            android:text="Account Type:"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="34sp"
-            android:textStyle="bold"
+            android:id="@+id/textView2"
+            android:layout_width="286dp"
+            android:layout_height="57dp"
+            android:fontFamily="@font/konkhmer_sleokchher"
+            android:text="SIGN UP AS : "
+            android:textColor="#181818"
+            android:textFontWeight="500"
+            android:textSize="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.29"
+            app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.292" />
 
         <RadioGroup
             android:id="@+id/LradioGroup"
-            android:layout_width="398dp"
-            android:layout_height="224dp"
+            android:layout_width="328dp"
+            android:layout_height="385dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.734">
+
 
             <RadioButton
                 android:id="@+id/LradioButtonAdmin"
                 android:layout_width="match_parent"
-                android:layout_height="66dp"
-                android:button="@drawable/custom_radio_button"
-                android:text="Admin"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:layout_height="43dp"
+                android:text=" ADMIN"
+                android:textFontWeight="700"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
-                android:id="@+id/Ladmindesc"
-                android:layout_width="343dp"
-                android:layout_height="73dp"
-                android:text="As an admin,you can conduct elections"
+                android:id="@+id/textView9"
+                android:layout_width="296dp"
+                android:layout_height="108dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/gowun_dodum"
+                android:text="As an admin, you can conduct elections"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textFontWeight="600"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <RadioButton
                 android:id="@+id/LradioButtonVoter"
-                android:layout_width="367dp"
-                android:layout_height="77dp"
-                android:text="Voter"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:text=" VOTER"
+                android:textFontWeight="700"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="276dp"
+                android:layout_height="74dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/gowun_dodum"
+                android:text="As an voter, you can take part in elections"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
-
+                android:textFontWeight="600"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent" />
         </RadioGroup>
-
-        <ImageView
-            android:id="@+id/Lacctypelogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.412"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.045"
-            app:srcCompat="@drawable/half_logo" />
-
-        <TextView
-            android:id="@+id/Lvoterdesc"
-            android:layout_width="wrap_content"
-            android:layout_height="73dp"
-            android:text="As a voter,you can take part in elections"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.685" />
 
         <Button
             android:id="@+id/LAccountTypeContinueButton"
@@ -108,10 +103,21 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.423"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.865" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="179dp"
+            android:layout_height="109dp"
+            android:src="@drawable/half_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.568"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.088" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

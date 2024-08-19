@@ -1,5 +1,8 @@
 package com.example.electonexus_project;
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -7,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.text.AllCapsTransformationMethod
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.ViewCompat
@@ -24,7 +28,7 @@ class result : ComponentActivity() {
         setContentView(R.layout.activity_result)
         val eid : String = getCredentialsFile()
         var i : Int=0
-        for(i in 0..10){
+        for(i in 0..20){
             createTextView("Sidddappa $i")
         }
 
@@ -68,6 +72,7 @@ class result : ComponentActivity() {
         }
         return ""
     }
+    @SuppressLint("RestrictedApi")
     private fun createTextView(name : String){
         val containerLayout: ConstraintLayout = findViewById(R.id.containerresult)
         val newTextView = TextView(this).apply {
@@ -75,7 +80,15 @@ class result : ComponentActivity() {
             text = name
             textSize = 18f
             setPadding(16, 16, 16, 16)
+            setTextColor(Color.BLACK)
+
+            // Set font weight to 600 (using Typeface.BOLD for similar effect)
+            typeface = Typeface.create(typeface, Typeface.BOLD)
+
+            // Make text all caps
+            transformationMethod = AllCapsTransformationMethod(context)
         }
+
 
         containerLayout.addView(newTextView)
 
