@@ -37,8 +37,6 @@ class voter_cast_vote : ComponentActivity() {
         enableEdgeToEdge()
 
         val Vun: String = getCredentialsFile()
-        Toast.makeText(this@voter_cast_vote,"Vun = $Vun",Toast.LENGTH_SHORT).show()
-
 
         setContentView(R.layout.activity_cast_vote)
 
