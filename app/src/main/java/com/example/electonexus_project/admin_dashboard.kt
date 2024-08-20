@@ -43,6 +43,7 @@ class admin_dashboard : ComponentActivity() {
         val candidaterequestbutton : Button = findViewById(R.id.Acandidaterequestbutton)
         val statusbtn : Button = findViewById(R.id.AElectionStatus)
         val reultsbtn : Button = findViewById(R.id.AElectionResults)
+        val Asoutbtn : Button = findViewById(R.id.Asignoutbutton)
 
         setCredentialsFile()
         statusbtn.setOnClickListener {
@@ -50,6 +51,12 @@ class admin_dashboard : ComponentActivity() {
         }
         reultsbtn.setOnClickListener {
             Intent(this, result::class.java).also{startActivity(it) }
+        }
+        Asoutbtn.setOnClickListener{
+            val intentt = Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intentt)
         }
 
         //setCredentialsFile()
