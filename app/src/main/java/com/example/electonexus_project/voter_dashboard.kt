@@ -48,7 +48,10 @@ class voter_dashboard : ComponentActivity(){
         val signoutbutton : Button = findViewById(R.id.Vsignoutbutton)
 
         signoutbutton.setOnClickListener {
-            Intent(this, MainActivity::class.java).also { startActivity(it) }
+            val intentt = Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intentt)
         }
 
     }
