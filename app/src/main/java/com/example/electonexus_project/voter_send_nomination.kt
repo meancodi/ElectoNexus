@@ -2,12 +2,18 @@ package com.example.electonexus_project
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.core.snap
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
@@ -22,12 +28,88 @@ class voter_send_nomination : ComponentActivity(){
         setContentView(R.layout.activity_send_nomination)
         val un = getCredentialsFile()
 
-        val eidtext : TextView = findViewById(R.id.Vsneid)
-        val nametext : TextView = findViewById(R.id.Vsnname)
+        val nametext : EditText = findViewById(R.id.Vsnname)
 
+        val addbutton : Button = findViewById(R.id.Vsnsnbutton)
+
+        var isEIDFound = false
+        var isUserInE = false
 
         fbrefacc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account")
-        fbrefelc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/")
+
+
+        addbutton.setOnClickListener {
+            val eidtext : EditText= findViewById(R.id.Vsneid)
+            val eid : String = eidtext.text.toString()
+            fbrefelc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election")
+
+            fbrefelc.addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        var a =""
+                        for(election in snapshot.children) {
+                            val eidn = election.key
+
+                            if(eid.equals(eidn)) {
+                                isEIDFound = true
+                                Toast.makeText(this@voter_send_nomination, "Election ID found", Toast.LENGTH_SHORT).show()
+                                fbrefelc.child("$eid/Voter").addListenerForSingleValueEvent(object :ValueEventListener{
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        if(snapshot.exists()){
+                                            Toast.makeText(this@voter_send_nomination,"in inner snapshot ${snapshot.key}",Toast.LENGTH_SHORT).show()
+                                            for(voter in snapshot.children){
+                                                val vk = voter.key.toString()
+                                                if(un == vk) {
+                                                    isUserInE = true
+                                                    Toast.makeText(this@voter_send_nomination,"Already enrolled in election",Toast.LENGTH_SHORT).show()
+                                                }
+                                            }
+                                            if(isUserInE==false){
+                                                Toast.makeText(this@voter_send_nomination,"Inside isUserinE if",Toast.LENGTH_SHORT).show()
+                                                fbrefacc.addListenerForSingleValueEvent(object :ValueEventListener{
+                                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                                        if(snapshot.exists()){
+                                                            for(user in snapshot.children){
+                                                                if(un == user.key.toString()){
+                                                                    a = user.child("name").value.toString()
+                                                                    fbrefelc.child("$eid/Voter/$un/name").setValue(a)
+                                                                    fbrefelc.child("$eid/Voter/$un/reqstat").setValue("ReqSent")
+                                                                    fbrefacc.child("$un/ElectionRequest/$eid/").setValue("ReqSent")
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    override fun onCancelled(error: DatabaseError) {
+                                                        Toast.makeText(this@voter_send_nomination,error.message,Toast.LENGTH_SHORT).show()
+                                                    }
+                                                })
+                                            }
+                                            isUserInE = false
+                                        }
+                                    }
+                                    override fun onCancelled(error: DatabaseError) {
+                                        Toast.makeText(this@voter_send_nomination,error.message,Toast.LENGTH_SHORT).show()
+                                    }
+                                })
+                            }
+                        }
+                        if (isEIDFound==false){
+                            Toast.makeText(
+                                this@voter_send_nomination,
+                                "Invalid Election ID",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        isEIDFound = false
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@voter_send_nomination,error.message,Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
 
     }
     private fun getCredentialsFile() :String {

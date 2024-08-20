@@ -91,7 +91,7 @@ class admin_sign_up : ComponentActivity() {
                             fbref2.child("Voter/$un/reqstat").setValue("Accepted")
                             fbref2.child("/admin").setValue(un)
                             fbref2.child("/ename").setValue(en)
-                            fbref2.child("Status").setValue("NotActive")
+                            fbref2.child("Status").setValue("Not Active")
                             Intent(this@admin_sign_up, MainActivity::class.java).also { startActivity(it) }
                             finish()
                         }.addOnFailureListener { err ->

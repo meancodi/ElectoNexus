@@ -41,7 +41,7 @@ class candidate_list : ComponentActivity() {
 
         fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eid/Candidate")
 
-        fbref.addValueEventListener(object : ValueEventListener {
+        fbref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
 
