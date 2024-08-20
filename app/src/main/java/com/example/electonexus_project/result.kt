@@ -21,7 +21,7 @@ import java.io.FileInputStream
 import java.io.InputStreamReader
 
 class result : ComponentActivity() {
-    private var lastTextViewId: Int? = R.id.textViewpv
+    private var lastTextViewId: Int? = R.id.Fname
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -103,7 +103,7 @@ class result : ComponentActivity() {
 
         constraintSet.connect(textView.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(60f) )
+        constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(120f) )
 
 
 
