@@ -11,53 +11,53 @@
 
 
     <TextView
-        android:layout_width="331dp"
-        android:layout_height="59dp"
-        android:text="Send Nomination"
+        android:id="@+id/Vcv_tv"
+        android:layout_width="405dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/alata"
+        android:gravity="center"
+        android:text="SEND NOMINATIONS"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#212121"
+        android:textSize="34dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/Vsneid"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="373dp"
-        android:layout_height="76dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/input_bg"
-        android:ems="10"
-        android:hint="Election ID"
 
-        android:inputType="number"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="248dp"
+        android:layout_marginEnd="5dp"
+
+        android:background="@drawable/input_bg"
+
+
+        android:hint="ELECTION ID"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textColorHighlight="#000000"
-        android:textColorHint="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textFontWeight="600"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.335" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Vsnsnbutton"
-        android:layout_width="225dp"
-        android:layout_height="78dp"
+        android:layout_width="220dp"
+        android:layout_height="57dp"
         android:background="@drawable/custom_button"
         android:text="Send Nomination"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

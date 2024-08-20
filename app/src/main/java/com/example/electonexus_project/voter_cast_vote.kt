@@ -28,13 +28,8 @@ class voter_cast_vote : ComponentActivity() {
 
         val searchbtn : Button = findViewById(R.id.Vcv_search)
         searchbtn.setOnClickListener {
-            var eidtovp : EditText = findViewById(R.id.Vcv_eid)
-            val eid : String = eidtovp.text.toString()
-            Toast.makeText(this,eid,Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, voter_voting_portal::class.java).apply {
-                putExtra("Eid",eid ) // Put the string data as an extra
-            }
-            startActivity(intent)
+
+
         }
 
         val Vun: String = getCredentialsFile()
@@ -46,6 +41,16 @@ class voter_cast_vote : ComponentActivity() {
         }
 
     }
+    private fun createintent(){
+
+        var eidtovp : EditText = findViewById(R.id.Vcv_eid)
+        val eid : String = eidtovp.text.toString()
+        Toast.makeText(this,eid,Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, voter_voting_portal::class.java).apply {
+            putExtra("Eid",eid ) // Put the string data as an extra
+        }
+        startActivity(intent)
+    }
     private fun createTextView(name : String){
         val containerLayout: ConstraintLayout = findViewById(R.id.containercastvote)
         val newTextView = TextView(this).apply {
@@ -54,14 +59,22 @@ class voter_cast_vote : ComponentActivity() {
             textSize = 18f
             setPadding(16, 16, 16, 16)
         }
+        val newTextView1 = TextView(this).apply {
+            id = View.generateViewId() // Generate a unique ID
+            text = name
+            textSize = 18f
+            setPadding(16, 16, 16, 16)
+        }
+
 
         containerLayout.addView(newTextView)
+        containerLayout.addView(newTextView1)
 
-        applyConstraintsToView(containerLayout, newTextView)
+        applyConstraintsToView(containerLayout, newTextView,newTextView1)
 
         lastTextViewId = newTextView.id
     }
-    private fun applyConstraintsToView(parent: ConstraintLayout, textView: TextView) {
+    private fun applyConstraintsToView(parent: ConstraintLayout, textView: TextView,textView1: TextView) {
         val constraintSet = ConstraintSet()
         constraintSet.clone(parent)
 
@@ -69,6 +82,10 @@ class voter_cast_vote : ComponentActivity() {
         constraintSet.connect(textView.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
         constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(60f) )
+
+        constraintSet.connect(textView1.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
+
+        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(60f) )
 
 
 
