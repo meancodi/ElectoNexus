@@ -50,7 +50,7 @@
         android:layout_width="145dp"
         android:layout_height="63dp"
         android:background="@drawable/custom_button"
-        android:text="Registor for Elections"
+        android:text="Register for Elections"
         android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"

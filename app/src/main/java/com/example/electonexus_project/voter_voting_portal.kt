@@ -85,7 +85,8 @@ class voter_voting_portal : ComponentActivity() {
                                 numvote = numvote!! + 1
                                 fbrefelc.child("$cid/numvot").setValue(numvote)
                                 Toast.makeText(this@voter_voting_portal,"Successfully Voted for $un",Toast.LENGTH_SHORT).show()
-                                Intent(this@voter_voting_portal, voter_dashboard::class.java).also { startActivity(it) }
+                                ipp()
+
 
                             }
                         }
@@ -103,6 +104,13 @@ class voter_voting_portal : ComponentActivity() {
 
 
 
+    }
+    private fun ipp(){
+
+        val intentt = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intentt)
     }
     @SuppressLint("RestrictedApi")
     private fun createTextView(cn : String , cun : String?){

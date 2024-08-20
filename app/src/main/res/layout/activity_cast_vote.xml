@@ -44,7 +44,7 @@
             android:layout_marginTop="32dp"
             android:background="@drawable/custom_button"
 
-            android:text="Search"
+            android:text="VOTE"
 
             android:textColor="@color/white"
             android:textSize="18dp"
