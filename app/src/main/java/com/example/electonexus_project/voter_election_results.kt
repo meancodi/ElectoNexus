@@ -19,7 +19,7 @@ import java.io.FileInputStream
 import java.io.InputStreamReader
 
 class voter_election_results : ComponentActivity() {
-    private var lastTextViewId: Int? = R.id.Vr_check
+    private var lastTextViewId: Int? = R.id.FnameRR
     private lateinit var fbrefelc : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,11 +129,11 @@ class voter_election_results : ComponentActivity() {
 
         constraintSet.connect(textView.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(60f) )
+        constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(70f) )
 
         constraintSet.connect(textView1.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(60f) )
+        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(180f) )
 
 
 

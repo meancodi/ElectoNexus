@@ -27,7 +27,7 @@ import java.io.InputStreamReader
 
 class result : ComponentActivity() {
 
-    private var lastTextViewId: Int? = R.id.textViewpv
+    private var lastTextViewId: Int? = R.id.Fname
 
     private lateinit var fbrefelc : DatabaseReference
 
@@ -168,10 +168,10 @@ class result : ComponentActivity() {
 
         constraintSet.connect(textView.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(60f) )
+        constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(70f) )
         constraintSet.connect(textView1.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(60f) )
+        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(180f) )
 
 
 
