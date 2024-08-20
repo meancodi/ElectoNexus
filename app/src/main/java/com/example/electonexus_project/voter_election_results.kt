@@ -4,34 +4,102 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
 
 class voter_election_results : ComponentActivity() {
     private var lastTextViewId: Int? = R.id.Vr_check
+    private lateinit var fbrefelc : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_voter_election_results)
 
-       // val Vun: String = getCredentialsFile()
-        var i: Int = 0
+        val eidedittext : TextView = findViewById(R.id.Vr_eid)
+        val eid = eidedittext.text.toString()
 
+        val button : Button = findViewById(R.id.Vr_check)
 
-        for (i in 0..30) {
+        fbrefelc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/")
 
-            createTextView("ninja $i ")
+        button.setOnClickListener {
+            fbrefelc.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (elc in snapshot.children) {
+                            if (elc.key.toString() == eid) {
+                                val status = elc.child("Status").getValue(String::class.java)
+                                if (status == "Election Ended") {
+                                    Toast.makeText(
+                                        this@voter_election_results,
+                                        "In Ended",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    fbrefelc.child("$eid/Candidate")
+                                        .addListenerForSingleValueEvent(object :
+                                            ValueEventListener {
+                                            override fun onDataChange(snapshot: DataSnapshot) {
+                                                if (snapshot.exists()) {
+                                                    for (candidate in snapshot.children) {
+                                                        if (candidate.key.toString() == "uunn") {
+                                                            continue
+                                                        }
+                                                        val name = candidate.child("name")
+                                                            .getValue(String::class.java)
+                                                        val numvote =
+                                                            candidate.child("numvot").value.toString()
+                                                        createTextView(name!!, numvote)
+                                                    }
+                                                } else {
+                                                    Toast.makeText(
+                                                        this@voter_election_results,
+                                                        "No 2nd snapshot found",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+                                            }
+
+                                            override fun onCancelled(error: DatabaseError) {
+                                                Toast.makeText(
+                                                    this@voter_election_results,
+                                                    error.message,
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        })
+                                }
+                            }
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@voter_election_results,
+                            "No 1st snapshot found",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@voter_election_results, error.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
         }
-
     }
 
-    private fun createTextView(name: String) {
+    private fun createTextView(name: String, numvote : String) {
         val containerLayout: ConstraintLayout = findViewById(R.id.containervelectionresults)
         val newTextView = TextView(this).apply {
             id = View.generateViewId() // Generate a unique ID
