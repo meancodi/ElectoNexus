@@ -121,12 +121,12 @@ class MainActivity : ComponentActivity() {
     }
     private fun saveCredentialsToFile(username: String, Acctype: String,eID : String,elname : String) {
         try {
-            // Define the file name and directory
+
             val fileName = "credentials.txt"
             val fileOutputStream: FileOutputStream = openFileOutput(fileName, Context.MODE_PRIVATE)
             val outputStreamWriter = OutputStreamWriter(fileOutputStream)
 
-            // Write username and password to the file
+
             outputStreamWriter.write("Username: $username\n")
             outputStreamWriter.write("Acctype: $Acctype\n")
             outputStreamWriter.write("eID: $eID\n")
@@ -142,52 +142,52 @@ class MainActivity : ComponentActivity() {
 
     private fun checkCredentialsFile() {
         try {
-            // Define the file name
+
             val fileName = "credentials.txt"
 
-            // Check if the file exists
+
             val fileInputStream: FileInputStream = openFileInput(fileName)
             val inputStreamReader = InputStreamReader(fileInputStream)
             val bufferedReader = BufferedReader(inputStreamReader)
             val stringBuilder = StringBuilder()
             var line: String?
 
-            // Read the file line by line
+
             while (bufferedReader.readLine().also { line = it } != null) {
                 stringBuilder.append(line).append("\n")
             }
 
-            // Close the reader
+
             bufferedReader.close()
 
-            // Display the content (for demonstration)
+
             Toast.makeText(this, "File Content:\n${stringBuilder.toString()}", Toast.LENGTH_LONG).show()
         } catch (e: Exception) {
-            // If the file is not found or other errors occur
+
             Toast.makeText(this, "No credentials found", Toast.LENGTH_SHORT).show()
         }
     }
     private fun readCredentialsFile() {
         try {
-            // Define the file name
+
             val fileName = "credentials.txt"
 
-            // Check if the file exists
+
             val fileInputStream: FileInputStream = openFileInput(fileName)
             val inputStreamReader = InputStreamReader(fileInputStream)
             val bufferedReader = BufferedReader(inputStreamReader)
             val stringBuilder = StringBuilder()
             var line: String?
 
-            // Read the file line by line
+
             while (bufferedReader.readLine().also { line = it } != null) {
                 stringBuilder.append(line).append("\n")
             }
 
-            // Close the reader
+
             bufferedReader.close()
 
-            // Display the content (for demonstration)
+
 
             Toast.makeText(this, "File Content:\n${stringBuilder.toString()}", Toast.LENGTH_LONG).show()
         } catch (e: Exception) {

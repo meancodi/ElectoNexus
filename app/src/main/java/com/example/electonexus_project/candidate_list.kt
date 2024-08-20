@@ -68,16 +68,16 @@ class candidate_list : ComponentActivity() {
     private fun createTextView(name : String){
         val containerLayout: ConstraintLayout = findViewById(R.id.containercandidatelist)
         val newTextView = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = name
             textSize = 18f
             setPadding(16, 16, 16, 16)
             setTextColor(Color.BLACK)
 
-            // Set font weight to 600 (using Typeface.BOLD for similar effect)
+
             typeface = Typeface.create(typeface, Typeface.BOLD)
 
-            // Make text all caps
+
             transformationMethod = AllCapsTransformationMethod(context)
         }
 
@@ -85,22 +85,20 @@ class candidate_list : ComponentActivity() {
 
         applyConstraintsToView(containerLayout, newTextView)
 
-        // Update the last IDs
+
         lastTextViewId = newTextView.id
     }
     private fun applyConstraintsToView(parent: ConstraintLayout, textView: TextView) {
         val constraintSet = ConstraintSet()
         constraintSet.clone(parent)
 
-        // Apply constraints to the TextView
 
-        // Position the new TextView below the last TextView
+
+
         constraintSet.connect(textView.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
         constraintSet.connect(textView.id, ConstraintSet.START, parent.id, ConstraintSet.START,dpToPx(60f) )
-        // constraintSet.connect(textView.id, ConstraintSet.END, parent.id, ConstraintSet.END, 16)
 
-        // Apply constraints to the Button
 
 
         constraintSet.applyTo(parent)
@@ -111,19 +109,19 @@ class candidate_list : ComponentActivity() {
     }
     private fun getCredentialsFile(): String {
         try {
-            // Define the file name
+
             val fileName = "credentials.txt"
             // val un : TextView = findViewById(R.id.electionname)
-            // Open the file for reading
+
             val fileInputStream: FileInputStream = openFileInput(fileName)
             val inputStreamReader = InputStreamReader(fileInputStream)
             val bufferedReader = BufferedReader(inputStreamReader)
 
-            // Initialize variables to hold the username and password
+
             var username: String? = null
             var Acctype: String? = null
 
-            // Read the file line by line
+
             var line: String?
             while (bufferedReader.readLine().also { line = it } != null) {
                 line?.let {
@@ -140,20 +138,19 @@ class candidate_list : ComponentActivity() {
                 }
             }
 
-            // Close the reader
-            bufferedReader.close()
+                       bufferedReader.close()
 
-            // Display the username and password in separate Toast messages
+
             if (username != null && Acctype != null) {
                 Toast.makeText(this, "Username: $username", Toast.LENGTH_LONG).show()
                 Toast.makeText(this, "Password: $Acctype", Toast.LENGTH_LONG).show()
             } else {
-                // If either username or password is missing
+
                 Toast.makeText(this, "Incomplete credentials found", Toast.LENGTH_SHORT).show()
             }
 
         } catch (e: Exception) {
-            // If the file is not found or other errors occur
+
             Toast.makeText(this, "No credentials found", Toast.LENGTH_SHORT).show()
         }
         return ""

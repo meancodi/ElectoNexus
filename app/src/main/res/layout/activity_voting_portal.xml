@@ -21,7 +21,8 @@
             android:layout_width="300dp"
             android:layout_height="78dp"
             android:layout_marginTop="30dp"
-            android:text="Voting Portal"
+            android:text="VOTING PORTAL"
+            android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30dp"
@@ -34,18 +35,17 @@
         <EditText
             android:id="@+id/Vp_cid"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="364dp"
-            android:layout_height="84dp"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/input_bg"
             android:ems="10"
-
-            android:hint="Candidate Username"
+            android:textFontWeight="600"
+            android:hint="CANDIDATE USERNAME"
             android:textAlignment="center"
-            android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,21 +53,20 @@
 
         <Button
             android:id="@+id/Vp_vote"
-            android:layout_width="210dp"
-            android:layout_height="63dp"
+            android:layout_width="152dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/custom_button"
+
             android:text="VOTE"
 
             android:textColor="@color/white"
-
-            android:textSize="24dp"
-            android:layout_marginTop="30dp"
+            android:textSize="18dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Vp_cid"
-            />
+            app:layout_constraintTop_toBottomOf="@id/Vp_cid" />
 
 
 

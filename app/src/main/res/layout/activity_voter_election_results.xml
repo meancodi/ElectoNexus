@@ -18,13 +18,15 @@
         >
         <TextView
             android:id="@+id/Vr_tv"
-            android:layout_width="300dp"
-            android:layout_height="78dp"
-            android:layout_marginTop="30dp"
-            android:text="Results"
+            android:layout_width="405dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/alata"
+            android:gravity="center"
+            android:text="RESULTS"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textColor="#212121"
+            android:textSize="35dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
@@ -34,18 +36,19 @@
         <EditText
             android:id="@+id/Vr_eid"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="364dp"
-            android:layout_height="84dp"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/input_bg"
             android:ems="10"
-            android:hint="Election ID"
+            android:hint="ELECTION ID"
+            android:textFontWeight="600"
 
             android:inputType="number"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.484"
@@ -55,21 +58,20 @@
 
         <Button
             android:id="@+id/Vr_check"
-            android:layout_width="210dp"
-            android:layout_height="63dp"
+            android:layout_width="162dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/custom_button"
+
             android:text="CHECK"
 
             android:textColor="@color/white"
-
-            android:textSize="24dp"
-            android:layout_marginTop="30dp"
+            android:textSize="18dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Vr_eid"
-            />
+            app:layout_constraintTop_toBottomOf="@id/Vr_eid" />
 
 
 
