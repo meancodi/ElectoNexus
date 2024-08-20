@@ -36,19 +36,19 @@
             android:layout_width="251dp"
             android:layout_height="48dp"
             android:fontFamily="@font/gowun_dodum"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:text="   ELECTION NAME:"
+            android:text="ELECTION NAME:"
             android:textAlignment="viewStart"
+            android:textColor="@color/black"
             android:textFontWeight="600"
+            android:textSize="18sp"
 
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.337"
+            app:layout_constraintHorizontal_bias="0.262"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.278" />
+            app:layout_constraintVertical_bias="0.272" />
 
         <EditText
             android:id="@+id/LSignupElectionName"
@@ -59,10 +59,10 @@
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.616"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.322"
+            app:layout_constraintVertical_bias="0.323"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
@@ -70,16 +70,16 @@
             android:layout_width="338dp"
             android:layout_height="55dp"
             android:fontFamily="@font/gowun_dodum"
-            android:text="NAME:"
+            android:text="   NAME:"
             android:textColor="@color/black"
             android:textFontWeight="600"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.835"
+            app:layout_constraintHorizontal_bias="0.671"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.437" />
+            app:layout_constraintVertical_bias="0.428" />
 
         <EditText
             android:id="@+id/LSignupName"
@@ -90,7 +90,7 @@
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.616"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.472"
@@ -107,7 +107,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.592"
+            app:layout_constraintHorizontal_bias="0.475"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.592" />
@@ -121,10 +121,10 @@
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.616"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.631"
+            app:layout_constraintVertical_bias="0.632"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
@@ -138,10 +138,10 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.592"
+            app:layout_constraintHorizontal_bias="0.475"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.742" />
+            app:layout_constraintVertical_bias="0.741" />
 
         <EditText
             android:id="@+id/LSignupPassword"
@@ -152,10 +152,10 @@
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.616"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.781"
+            app:layout_constraintVertical_bias="0.783"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button

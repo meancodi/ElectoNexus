@@ -84,7 +84,7 @@
         android:layout_width="140dp"
         android:layout_height="57dp"
         android:background="@drawable/custom_button"
-        android:text="Candidate list"
+        android:text="Candidate\nlist"
         android:textColor="#FFFDFD"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
