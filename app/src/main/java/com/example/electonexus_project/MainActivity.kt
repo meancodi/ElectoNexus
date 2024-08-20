@@ -89,7 +89,6 @@ class MainActivity : ComponentActivity() {
                             else if(type=="V"){
                                 val name = dataSnapshot.child("name").value.toString()
                                 saveCredentialsToFile(username,"V","",name)
-                                Toast.makeText(this@MainActivity, "Login to Voter", Toast.LENGTH_SHORT).show()
                                 Intent(this@MainActivity, voter_dashboard::class.java).also { startActivity(it) }
                             }
 

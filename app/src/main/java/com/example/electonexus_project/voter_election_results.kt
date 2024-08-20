@@ -81,6 +81,9 @@ class voter_election_results : ComponentActivity() {
                                             }
                                         })
                                 }
+                                else{
+                                    Toast.makeText(this@voter_election_results,"Election has not ended",Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }
                     } else {

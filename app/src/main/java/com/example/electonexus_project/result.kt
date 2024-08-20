@@ -59,9 +59,6 @@ class result : ComponentActivity() {
                                                 createTextView(name!!,numvote)
                                             }
                                         }
-                                        else{
-                                            Toast.makeText(this@result,"No 2nd snapshot found",Toast.LENGTH_SHORT).show()
-                                        }
                                     }
 
                                     override fun onCancelled(error: DatabaseError) {
@@ -69,11 +66,11 @@ class result : ComponentActivity() {
                                     }
                                 })
                             }
+                            else{
+                                Toast.makeText(this@result,"Election has not ended",Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
-                }
-                else{
-                    Toast.makeText(this@result,"No 1st snapshot found",Toast.LENGTH_SHORT).show()
                 }
             }
 
