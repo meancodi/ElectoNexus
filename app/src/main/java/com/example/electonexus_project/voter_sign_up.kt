@@ -38,7 +38,6 @@ class voter_sign_up : ComponentActivity() {
                 noerror = saveVoterData()
                 if(noerror){
                 Intent(this, MainActivity::class.java).also { startActivity(it) }
-                Toast.makeText(this, "Signup Successful", Toast.LENGTH_SHORT).show()
                 finish()
                 }
         }
