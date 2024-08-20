@@ -27,14 +27,15 @@ class voter_election_results : ComponentActivity() {
 
         setContentView(R.layout.activity_voter_election_results)
 
-        val eidedittext : TextView = findViewById(R.id.Vr_eid)
-        val eid = eidedittext.text.toString()
+
 
         val button : Button = findViewById(R.id.Vr_check)
 
         fbrefelc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/")
 
         button.setOnClickListener {
+            val eidedittext : TextView = findViewById(R.id.Vr_eid)
+            val eid = eidedittext.text.toString()
             fbrefelc.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
@@ -109,7 +110,7 @@ class voter_election_results : ComponentActivity() {
         }
         val newTextView1 = TextView(this).apply {
             id = View.generateViewId()
-            text = name
+            text = numvote
             textSize = 18f
             setPadding(16, 16, 16, 16)
         }
