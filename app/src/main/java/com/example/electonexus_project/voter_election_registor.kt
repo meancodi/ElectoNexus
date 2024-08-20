@@ -43,26 +43,37 @@ class voter_election_registor : ComponentActivity() {
         fbrefacc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account")
         fbrefelc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election")
 
-        fbrefacc.child("$Vun/ElectionRequest").addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(voter in snapshot.children){
-                        val eidd = voter.key.toString()
+            fbrefacc.child("$Vun/ElectionRequest")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            for (voter in snapshot.children) {
+                                val eidd = voter.key.toString()
+                                if(eidd == "11") {
+                                    continue
+                                }
 //                        Toast.makeText(this@voter_election_registor,"Eid = $eidd",Toast.LENGTH_SHORT).show()
-                        val enamee = voter.child("ename").getValue().toString()
-                        val stat = voter.child("reqstat").getValue().toString()
-                        createTextView(eidd,enamee,stat)
+                                val enamee = voter.child("ename").getValue().toString()
+                                val stat = voter.child("reqstat").getValue().toString()
+                                createTextView(eidd, enamee, stat)
+                            }
+                        } else {
+                            Toast.makeText(
+                                this@voter_election_registor,
+                                "Not registered for any election",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                }
-                else{
-                    Toast.makeText(this@voter_election_registor,"Not registered for any election",Toast.LENGTH_SHORT).show()
-                }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@voter_election_registor,error.message,Toast.LENGTH_SHORT).show()
-            }
-        })
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(
+                            this@voter_election_registor,
+                            error.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
 
         eidbutton.setOnClickListener {
 
@@ -80,7 +91,6 @@ class voter_election_registor : ComponentActivity() {
                         var a =""
                         for(election in snapshot.children) {
                             val eidn = election.key
-                            Toast.makeText(this@voter_election_registor, "In eid check", Toast.LENGTH_SHORT).show()
                             if(eid == "11"){
                                 continue
                             }
@@ -93,8 +103,6 @@ class voter_election_registor : ComponentActivity() {
                                     override fun onDataChange(snapshot: DataSnapshot) {
                                         if(snapshot.exists()){
                                             for(voter in snapshot.children){
-                                                Toast.makeText(this@voter_election_registor, "In un check", Toast.LENGTH_SHORT).show()
-
                                                 val vk = voter.key.toString()
                                                 if(Vun == vk) {
                                                     isUserInE = true
