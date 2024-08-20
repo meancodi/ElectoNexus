@@ -40,6 +40,16 @@ class voter_dashboard : ComponentActivity(){
         vcandidatebutton.setOnClickListener {
             Intent(this, voter_send_nomination::class.java).also { startActivity(it) }
         }
+        val resultsbutton : Button = findViewById(R.id.Vresultsbutton)
+
+        resultsbutton.setOnClickListener {
+            Intent(this, voter_election_results::class.java).also { startActivity(it) }
+        }
+        val signoutbutton : Button = findViewById(R.id.Vsignoutbutton)
+
+        signoutbutton.setOnClickListener {
+            Intent(this, MainActivity::class.java).also { startActivity(it) }
+        }
 
     }
     private fun setCredentialsFile() {

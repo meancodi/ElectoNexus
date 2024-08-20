@@ -56,6 +56,8 @@
             android:exported="false"/>
         <activity android:name=".voter_voting_portal"
             android:exported="false"/>
+        <activity android:name=".voter_election_results"
+            android:exported="false"/>
 
         <activity
             android:name=".MainActivity"
