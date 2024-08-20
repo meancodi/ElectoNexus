@@ -26,7 +26,7 @@ import java.io.InputStreamReader
 
 class voter_voting_portal : ComponentActivity() {
 
-    private var lastTextViewId: Int? = R.id.Vp_vote
+    private var lastTextViewId: Int? = R.id.USERNAMEVPVP
     private lateinit var fbrefelc : DatabaseReference
     private lateinit var fbrefacc : DatabaseReference
 
@@ -148,7 +148,7 @@ class voter_voting_portal : ComponentActivity() {
 
         constraintSet.connect(textView1.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(60f) )
+        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(180f) )
 
 
 

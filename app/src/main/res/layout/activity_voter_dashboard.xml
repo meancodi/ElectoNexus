@@ -19,6 +19,7 @@
         android:background="@drawable/custom_button"
         android:text="sign out"
 
+
         android:textColor="@color/white"
 
         android:textSize="14sp"

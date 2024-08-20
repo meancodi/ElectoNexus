@@ -13,7 +13,7 @@ import java.io.FileInputStream
 import java.io.InputStreamReader
 
 class voter_election_results : ComponentActivity() {
-    private var lastTextViewId: Int? = R.id.Vr_check
+    private var lastTextViewId: Int? = R.id.FnameRR
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
