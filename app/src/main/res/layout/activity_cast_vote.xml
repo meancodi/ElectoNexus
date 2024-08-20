@@ -61,17 +61,16 @@
             android:id="@+id/Vcv_tv"
             android:layout_width="300dp"
             android:layout_height="78dp"
-            android:text="Request Status"
+            android:layout_marginTop="30dp"
+            android:text="Active Elections"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30dp"
-            android:layout_marginTop="30dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Vcv_search"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/Vcv_search" />
 
 
 

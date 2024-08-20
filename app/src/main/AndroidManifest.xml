@@ -54,6 +54,8 @@
             android:exported="false"/>
         <activity android:name=".voter_cast_vote"
             android:exported="false"/>
+        <activity android:name=".voter_voting_portal"
+            android:exported="false"/>
 
         <activity
             android:name=".MainActivity"

@@ -1,10 +1,7 @@
 package com.example.electonexus_project
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -15,39 +12,27 @@ import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
 
-class voter_cast_vote : ComponentActivity() {
-    private var lastTextViewId: Int? = R.id.Vcv_tv
+class voter_voting_portal : ComponentActivity() {
+    private var lastTextViewId: Int? = R.id.Vp_vote
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        setContentView(R.layout.activity_cast_vote)
-
-
-
-
-        val searchbtn : Button = findViewById(R.id.Vcv_search)
-        searchbtn.setOnClickListener {
-            var eidtovp : EditText = findViewById(R.id.Vcv_eid)
-            val eid : String = eidtovp.text.toString()
-            Toast.makeText(this,eid,Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, voter_voting_portal::class.java).apply {
-                putExtra("Eid",eid ) // Put the string data as an extra
-            }
-            startActivity(intent)
-        }
+        setContentView(R.layout.activity_voting_portal)
 
         val Vun: String = getCredentialsFile()
         var i : Int =0
 
+        val receivedText = intent.getStringExtra("Eid")
+        Toast.makeText(this,receivedText,Toast.LENGTH_SHORT).show()
         for(i in 0..30){
 
-            createTextView("lanja lapaki $i")
+            createTextView("$receivedText ")
         }
 
     }
     private fun createTextView(name : String){
-        val containerLayout: ConstraintLayout = findViewById(R.id.containercastvote)
+        val containerLayout: ConstraintLayout = findViewById(R.id.containervotingportal)
         val newTextView = TextView(this).apply {
             id = View.generateViewId() // Generate a unique ID
             text = name
