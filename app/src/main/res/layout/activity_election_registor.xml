@@ -19,59 +19,55 @@
 
     <EditText
         android:id="@+id/VeidText"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="364dp"
-        android:layout_height="84dp"
-        android:layout_marginEnd="5dp"
-        android:background="@drawable/input_bg"
-        android:ems="10"
-        android:hint="Election ID"
 
-        android:inputType="number"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="5dp"
+
+        android:background="@drawable/input_bg"
+
+
+        android:hint="ELECTION ID"
+        android:textFontWeight="600"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="24sp"
-        android:layout_marginTop="30dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Veidbutton"
-        android:layout_width="210dp"
-        android:layout_height="63dp"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/custom_button"
-        android:text="Send Request"
+
+        android:text="Send request"
 
         android:textColor="@color/white"
-
-        android:textSize="24dp"
-        android:layout_marginTop="30dp"
+        android:textSize="18dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/VeidText"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/VeidText" />
 
     <TextView
         android:id="@+id/ertextview"
-        android:layout_width="300dp"
-        android:layout_height="78dp"
-        android:text="Request Status"
+        android:layout_width="405dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="264dp"
+        android:fontFamily="@font/alata"
+        android:gravity="center"
+        android:text="REQUEST STATUS"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:layout_marginTop="30dp"
+        android:textColor="#212121"
+        android:textSize="35dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Veidbutton"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
