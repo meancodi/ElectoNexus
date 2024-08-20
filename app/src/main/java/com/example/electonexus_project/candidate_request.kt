@@ -27,6 +27,7 @@ class candidate_request : ComponentActivity() {
     private lateinit var eid : String
 
     private lateinit var fbref : DatabaseReference
+    private lateinit var fbrefacc : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,7 @@ class candidate_request : ComponentActivity() {
         eid = getCredentialsFile()
 
         fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eid/Candidate")
+        fbrefacc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account")
         fbinitialise()
 
     }
@@ -89,6 +91,7 @@ class candidate_request : ComponentActivity() {
         yButton.setOnClickListener {
             val updatedstatus = "Accepted"
             fbref.child("$uname/reqstat").setValue(updatedstatus)
+            fbrefacc.child("$uname/CandidateRequest/$eid/reqstat").setValue(updatedstatus)
             Toast.makeText(this, "$uname is updated hopefully", Toast.LENGTH_SHORT).show()
             delbutton()
             fbinitialise()
@@ -96,6 +99,7 @@ class candidate_request : ComponentActivity() {
         nButton.setOnClickListener {
             val updatedstatus = "Rejected"
             fbref.child("$uname/reqstat").setValue(updatedstatus)
+            fbrefacc.child("$uname/CandidateRequest/$eid/reqstat").setValue(updatedstatus)
             Toast.makeText(this, "$uname is updated hopefully", Toast.LENGTH_SHORT).show()
             delbutton()
             fbinitialise()

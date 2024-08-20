@@ -73,6 +73,10 @@ class voter_sign_up : ComponentActivity() {
                     else{
                         val voter = VoterModel(name,username, password,"V")
                         fbref.child(username).setValue(voter).addOnCompleteListener {
+                            fbref.child("$username/ElectionRequest/11/name").setValue(" ")
+                            fbref.child("$username/ElectionRequest/11/reqstat").setValue(" ")
+                            fbref.child("$username/CandidateRequest/11/name").setValue(" ")
+                            fbref.child("$username/CandidateRequest/11/reqstat").setValue(" ")
                             Toast.makeText(this@voter_sign_up, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                         }.addOnFailureListener { err ->
                             Toast.makeText(this@voter_sign_up, "${err.message}", Toast.LENGTH_SHORT).show()

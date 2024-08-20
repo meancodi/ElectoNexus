@@ -27,6 +27,7 @@ class Voterrequest : ComponentActivity() {
     private lateinit var eid : String
 
     private lateinit var fbref : DatabaseReference
+    private lateinit var fbrefacc : DatabaseReference
     private var blist = mutableListOf("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,7 @@ class Voterrequest : ComponentActivity() {
         eid = getCredentialsFile()
 
         fbref = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eid/Voter")
+        fbrefacc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Account")
         fbinitialise()
 
     }
@@ -59,6 +61,9 @@ class Voterrequest : ComponentActivity() {
         val uname = voter.key
         val name = voter.child("name").getValue(String::class.java)
         val stat = voter.child("reqstat").getValue(String::class.java)
+
+
+
         if(stat != "ReqSent"){
             return
         }
@@ -90,14 +95,16 @@ class Voterrequest : ComponentActivity() {
             yButton.setOnClickListener {
                 val updatedstatus = "Accepted"
                 fbref.child("$uname/reqstat").setValue(updatedstatus)
-                Toast.makeText(this, "$uname is updated hopefully", Toast.LENGTH_SHORT).show()
+                fbrefacc.child("$uname/ElectionRequest/$eid/reqstat").setValue(updatedstatus)
+                Toast.makeText(this, "$name is Accepted", Toast.LENGTH_SHORT).show()
                 delbutton()
                 fbinitialise()
             }
             nButton.setOnClickListener {
                 val updatedstatus = "Rejected"
+                fbrefacc.child("$uname/ElectionRequest/$eid/reqstat").setValue(updatedstatus)
                 fbref.child("$uname/reqstat").setValue(updatedstatus)
-                Toast.makeText(this, "$uname is updated hopefully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "$name is Rejected", Toast.LENGTH_SHORT).show()
                 delbutton()
                 fbinitialise()
             }

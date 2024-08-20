@@ -60,25 +60,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.776" />
 
-    <EditText
-        android:id="@+id/Vsnname"
-        android:layout_width="200sp"
-        android:layout_height="63dp"
-        android:background="@drawable/input_bg"
-        android:ems="10"
-
-        android:hint="Name"
-
-        android:inputType="text"
-        android:textAlignment="center"
-        android:textColorHighlight="@color/white"
-        android:textColorHint="@android:color/black"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

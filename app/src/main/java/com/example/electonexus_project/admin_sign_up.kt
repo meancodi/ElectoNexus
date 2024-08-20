@@ -87,11 +87,13 @@ class admin_sign_up : ComponentActivity() {
                         fbref1.child(un).setValue(admin).addOnCompleteListener {
                             Toast.makeText(this@admin_sign_up, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                             fbref2 = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election/$eId")
-                            fbref2.child("Voter/$un/name").setValue(name)
-                            fbref2.child("Voter/$un/reqstat").setValue("Accepted")
                             fbref2.child("/admin").setValue(un)
                             fbref2.child("/ename").setValue(en)
                             fbref2.child("Status").setValue("Not Active")
+                            fbref2.child("Voter/uunn/name").setValue("")
+                            fbref2.child("Candidate/uunn/name").setValue("")
+                            fbref2.child("Voter/uunn/reqstat").setValue("")
+                            fbref2.child("Candidate/uunn/reqstat").setValue("")
                             Intent(this@admin_sign_up, MainActivity::class.java).also { startActivity(it) }
                             finish()
                         }.addOnFailureListener { err ->

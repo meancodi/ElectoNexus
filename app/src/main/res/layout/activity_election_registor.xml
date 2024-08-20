@@ -18,7 +18,7 @@
     >
 
     <EditText
-        android:id="@+id/ElectionID_Request"
+        android:id="@+id/VeidText"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="364dp"
         android:layout_height="84dp"
@@ -40,7 +40,7 @@
          />
 
     <Button
-        android:id="@+id/button_Send_Request"
+        android:id="@+id/Veidbutton"
         android:layout_width="210dp"
         android:layout_height="63dp"
         android:background="@drawable/custom_button"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ElectionID_Request"
+        app:layout_constraintTop_toBottomOf="@+id/VeidText"
          />
 
     <TextView
@@ -70,12 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_Send_Request"
+        app:layout_constraintTop_toBottomOf="@+id/Veidbutton"
          />
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

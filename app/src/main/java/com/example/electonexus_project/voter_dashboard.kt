@@ -24,9 +24,9 @@ class voter_dashboard : ComponentActivity(){
         enableEdgeToEdge()
         setContentView(R.layout.activity_voter_dashboard)
         setCredentialsFile()
-        val eregistor : Button = findViewById(R.id.Velectionregistor)
+        val eregister : Button = findViewById(R.id.Velectionregistor)
         val castvotebutton : Button = findViewById(R.id.Vcastvotebutton)
-        eregistor.setOnClickListener {
+        eregister.setOnClickListener {
             Intent(this, voter_election_registor::class.java).also{startActivity(it) }
         }
         castvotebutton.setOnClickListener {
@@ -36,9 +36,6 @@ class voter_dashboard : ComponentActivity(){
             startActivity(intent)
 
         }
-
-
-
         val vcandidatebutton : Button = findViewById(R.id.Vcandidateapply)
         vcandidatebutton.setOnClickListener {
             Intent(this, voter_send_nomination::class.java).also { startActivity(it) }

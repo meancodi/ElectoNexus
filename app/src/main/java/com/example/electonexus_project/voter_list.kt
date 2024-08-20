@@ -72,16 +72,14 @@ class voter_list : ComponentActivity() {
     private fun createTextView(name : String){
         val containerLayout: ConstraintLayout = findViewById(R.id.containervoterlist)
         val newTextView = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = name
             textSize = 18f
             setPadding(16, 16, 16, 16)
             setTextColor(Color.BLACK)
 
-            // Set font weight to 600 (using Typeface.BOLD for similar effect)
             typeface = Typeface.create(typeface, Typeface.BOLD)
 
-            // Make text all caps
             transformationMethod = AllCapsTransformationMethod(context)
         }
 

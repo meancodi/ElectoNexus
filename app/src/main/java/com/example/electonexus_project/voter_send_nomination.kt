@@ -20,6 +20,8 @@ import java.io.InputStreamReader
 
 class voter_send_nomination : ComponentActivity(){
 
+    private lateinit var ename : String
+
     private lateinit var fbrefacc : DatabaseReference
     private lateinit var fbrefelc : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +30,6 @@ class voter_send_nomination : ComponentActivity(){
         setContentView(R.layout.activity_send_nomination)
         val un = getCredentialsFile()
 
-        val nametext : EditText = findViewById(R.id.Vsnname)
 
         val addbutton : Button = findViewById(R.id.Vsnsnbutton)
 
@@ -52,11 +53,11 @@ class voter_send_nomination : ComponentActivity(){
 
                             if(eid.equals(eidn)) {
                                 isEIDFound = true
+                                ename = election.child("ename").getValue().toString()
                                 Toast.makeText(this@voter_send_nomination, "Election ID found", Toast.LENGTH_SHORT).show()
-                                fbrefelc.child("$eid/Voter").addListenerForSingleValueEvent(object :ValueEventListener{
+                                fbrefelc.child("$eid/Candidate").addListenerForSingleValueEvent(object :ValueEventListener{
                                     override fun onDataChange(snapshot: DataSnapshot) {
                                         if(snapshot.exists()){
-                                            Toast.makeText(this@voter_send_nomination,"in inner snapshot ${snapshot.key}",Toast.LENGTH_SHORT).show()
                                             for(voter in snapshot.children){
                                                 val vk = voter.key.toString()
                                                 if(un == vk) {
@@ -65,16 +66,16 @@ class voter_send_nomination : ComponentActivity(){
                                                 }
                                             }
                                             if(isUserInE==false){
-                                                Toast.makeText(this@voter_send_nomination,"Inside isUserinE if",Toast.LENGTH_SHORT).show()
                                                 fbrefacc.addListenerForSingleValueEvent(object :ValueEventListener{
                                                     override fun onDataChange(snapshot: DataSnapshot) {
                                                         if(snapshot.exists()){
                                                             for(user in snapshot.children){
                                                                 if(un == user.key.toString()){
                                                                     a = user.child("name").value.toString()
-                                                                    fbrefelc.child("$eid/Voter/$un/name").setValue(a)
-                                                                    fbrefelc.child("$eid/Voter/$un/reqstat").setValue("ReqSent")
-                                                                    fbrefacc.child("$un/ElectionRequest/$eid/").setValue("ReqSent")
+                                                                    fbrefelc.child("$eid/Candidate/$un/name").setValue(a)
+                                                                    fbrefelc.child("$eid/Candidate/$un/reqstat").setValue("ReqSent")
+                                                                    fbrefacc.child("$un/CanididateRequest/$eid/reqstat").setValue("ReqSent")
+                                                                    fbrefacc.child("$un/CanididateRequest/$eid/ename").setValue(ename)
                                                                 }
                                                             }
                                                         }
