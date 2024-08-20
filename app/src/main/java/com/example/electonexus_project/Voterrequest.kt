@@ -77,7 +77,7 @@ class Voterrequest : ComponentActivity() {
         @SuppressLint("RestrictedApi")
             val containerLayout: ConstraintLayout = findViewById(R.id.containervoterrequestlist)
             val newTextView = TextView(this).apply {
-                id = View.generateViewId() // Generate a unique ID
+                id = View.generateViewId()
                 text = name
                 textSize = 18f
                 setPadding(16, 16, 16, 16)
@@ -88,26 +88,26 @@ class Voterrequest : ComponentActivity() {
                 transformationMethod = AllCapsTransformationMethod(context)
             }
             val yButton = Button(this).apply {
-                id = View.generateViewId() // Generate a unique ID
+                id = View.generateViewId()
                 text = "Yes"
                 tag = "ybtn+$uname"
                 textSize = 18f
                 setPadding(16, 16, 16, 16)
                 setBackgroundResource(R.drawable.input_button)
 
-                // Set text color
+
                 setTextColor(ContextCompat.getColor(context, R.color.white))
 
             }
             val nButton = Button(this).apply {
-                id = View.generateViewId() // Generate a unique ID
+                id = View.generateViewId()
                 text = "No"
                 tag = "nbtn+$uname"
                 textSize = 18f
                 setPadding(16, 16, 16, 16)
                 setBackgroundResource(R.drawable.input_button)
 
-                // Set text color
+
                 setTextColor(ContextCompat.getColor(context, R.color.white))
 
             }

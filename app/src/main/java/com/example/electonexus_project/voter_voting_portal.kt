@@ -108,7 +108,7 @@ class voter_voting_portal : ComponentActivity() {
     private fun createTextView(cn : String , cun : String?){
         val containerLayout: ConstraintLayout = findViewById(R.id.containervotingportal)
         val newTextView = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = cn
             textSize = 18f
             setPadding(16, 16, 16, 16)
@@ -119,7 +119,7 @@ class voter_voting_portal : ComponentActivity() {
             transformationMethod = AllCapsTransformationMethod(context)
         }
         val newTextView1 = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = cun
             textSize = 18f
             setPadding(16, 16, 16, 16)

@@ -34,13 +34,13 @@ class voter_election_results : ComponentActivity() {
     private fun createTextView(name: String) {
         val containerLayout: ConstraintLayout = findViewById(R.id.containervelectionresults)
         val newTextView = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = name
             textSize = 18f
             setPadding(16, 16, 16, 16)
         }
         val newTextView1 = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = name
             textSize = 18f
             setPadding(16, 16, 16, 16)

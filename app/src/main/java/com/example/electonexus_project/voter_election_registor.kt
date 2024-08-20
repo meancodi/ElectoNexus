@@ -165,7 +165,7 @@ class voter_election_registor : ComponentActivity() {
     private fun createTextView(eid : String, ename: String,estatus:String){
         val containerLayout: ConstraintLayout = findViewById(R.id.containerelectionregistor)
         val newTextView = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = eid
             textSize = 18f
             setPadding(16, 16, 16, 16)
@@ -176,7 +176,7 @@ class voter_election_registor : ComponentActivity() {
             transformationMethod = AllCapsTransformationMethod(context)
         }
         val newTextView1 = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = ename
             textSize = 18f
             setPadding(16, 16, 16, 16)
@@ -187,7 +187,7 @@ class voter_election_registor : ComponentActivity() {
             transformationMethod = AllCapsTransformationMethod(context)
         }
         val newTextView2 = TextView(this).apply {
-            id = View.generateViewId() // Generate a unique ID
+            id = View.generateViewId()
             text = estatus
             textSize = 18f
             setPadding(16, 16, 16, 16)
@@ -217,11 +217,11 @@ class voter_election_registor : ComponentActivity() {
 
         constraintSet.connect(textView1.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(100f) )
+        constraintSet.connect(textView1.id, ConstraintSet.START, textView.id, ConstraintSet.START,dpToPx(120f) )
 
         constraintSet.connect(textView2.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView2.id, ConstraintSet.START, textView1.id, ConstraintSet.START,dpToPx(120f) )
+        constraintSet.connect(textView2.id, ConstraintSet.START, textView1.id, ConstraintSet.START,dpToPx(140f) )
 
 
 

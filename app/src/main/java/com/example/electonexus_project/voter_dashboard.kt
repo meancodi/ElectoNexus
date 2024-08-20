@@ -57,20 +57,20 @@ class voter_dashboard : ComponentActivity(){
     }
     private fun setCredentialsFile() {
         try {
-            // Define the file name
+
             val fileName = "credentials.txt"
             val votername : TextView = findViewById(R.id.voterdbname)
             val voterun : TextView = findViewById(R.id.voterdbun)
-            // Open the file for reading
+
             val fileInputStream: FileInputStream = openFileInput(fileName)
             val inputStreamReader = InputStreamReader(fileInputStream)
             val bufferedReader = BufferedReader(inputStreamReader)
 
-            // Initialize variables to hold the username and password
+
             var username: String? = null
             var Accname: String? = null
 
-            // Read the file line by line
+
             var line: String?
             while (bufferedReader.readLine().also { line = it } != null) {
                 line?.let {
@@ -89,19 +89,19 @@ class voter_dashboard : ComponentActivity(){
                 }
             }
 
-            // Close the reader
+
             bufferedReader.close()
 
             /*if (username != null && Acctype != null) {
                 Toast.makeText(this, "Username: $username", Toast.LENGTH_LONG).show()
                 Toast.makeText(this, "Password: $Acctype", Toast.LENGTH_LONG).show()
             } else {
-                // If either username or password is missing
+
                 Toast.makeText(this, "Incomplete credentials found", Toast.LENGTH_SHORT).show()
             }*/
 
         } catch (e: Exception) {
-            // If the file is not found or other errors occur
+
             Toast.makeText(this, "No credentials found", Toast.LENGTH_SHORT).show()
         }
     }

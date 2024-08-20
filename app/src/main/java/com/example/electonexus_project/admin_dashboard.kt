@@ -72,20 +72,20 @@ class admin_dashboard : ComponentActivity() {
     @SuppressLint("SetTextI18n")
     private fun setCredentialsFile() {
         try {
-            // Define the file name
+
             val fileName = "credentials.txt"
             val enview : TextView = findViewById(R.id.electionname)
             val eidview : TextView = findViewById(R.id.electionid)
-            // Open the file for reading
+
             val fileInputStream: FileInputStream = openFileInput(fileName)
             val inputStreamReader = InputStreamReader(fileInputStream)
             val bufferedReader = BufferedReader(inputStreamReader)
 
-            // Initialize variables to hold the username and password
+
             var username: String? = null
             var Acctype: String? = null
 
-            // Read the file line by line
+
             var line: String?
             while (bufferedReader.readLine().also { line = it } != null) {
                 line?.let {
@@ -119,7 +119,7 @@ class admin_dashboard : ComponentActivity() {
                 }
             }
 
-            // Close the reader
+
             bufferedReader.close()
 
             /*if (username != null && Acctype != null) {
