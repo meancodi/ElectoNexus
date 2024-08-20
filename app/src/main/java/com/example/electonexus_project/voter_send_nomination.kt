@@ -77,6 +77,7 @@ class voter_send_nomination : ComponentActivity(){
                                                                     fbrefelc.child("$eid/Candidate/$un/numvot").setValue(0)
                                                                     fbrefacc.child("$un/CandidateRequest/$eid/reqstat").setValue("ReqSent")
                                                                     fbrefacc.child("$un/CandidateRequest/$eid/ename").setValue(ename)
+                                                                    Toast.makeText(this@voter_send_nomination,"Nomination Sent Successfully",Toast.LENGTH_SHORT).show()
                                                                 }
                                                             }
                                                         }

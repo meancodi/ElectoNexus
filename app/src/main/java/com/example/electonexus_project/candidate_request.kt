@@ -112,7 +112,7 @@ class candidate_request : ComponentActivity() {
             val updatedstatus = "Accepted"
             fbref.child("$uname/reqstat").setValue(updatedstatus)
             fbrefacc.child("$uname/CandidateRequest/$eid/reqstat").setValue(updatedstatus)
-            Toast.makeText(this, "$uname is updated hopefully", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "$uname is Accepted", Toast.LENGTH_SHORT).show()
             delbutton()
             fbinitialise()
         }
@@ -120,7 +120,7 @@ class candidate_request : ComponentActivity() {
             val updatedstatus = "Rejected"
             fbref.child("$uname/reqstat").setValue(updatedstatus)
             fbrefacc.child("$uname/CandidateRequest/$eid/reqstat").setValue(updatedstatus)
-            Toast.makeText(this, "$uname is updated hopefully", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "$uname is Rejected", Toast.LENGTH_SHORT).show()
             delbutton()
             fbinitialise()
         }
