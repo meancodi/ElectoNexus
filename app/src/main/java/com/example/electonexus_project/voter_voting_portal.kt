@@ -107,7 +107,7 @@ class voter_voting_portal : ComponentActivity() {
     }
     private fun ipp(){
 
-        val intentt = Intent(this, MainActivity::class.java).apply {
+        val intentt = Intent(this, voter_dashboard::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         startActivity(intentt)
@@ -124,7 +124,7 @@ class voter_voting_portal : ComponentActivity() {
 
             typeface = Typeface.create(typeface, Typeface.BOLD)
 
-            transformationMethod = AllCapsTransformationMethod(context)
+            //transformationMethod = AllCapsTransformationMethod(context)
         }
         val newTextView1 = TextView(this).apply {
             id = View.generateViewId()
