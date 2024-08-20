@@ -1,5 +1,8 @@
 package com.example.electonexus_project
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +11,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.text.AllCapsTransformationMethod
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Class
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -57,6 +62,7 @@ class Voterrequest : ComponentActivity() {
 
         }
     }
+    @SuppressLint("RestrictedApi")
     private fun createView(voter : DataSnapshot){
         val uname = voter.key
         val name = voter.child("name").getValue(String::class.java)
@@ -68,13 +74,18 @@ class Voterrequest : ComponentActivity() {
             return
         }
 
-
+        @SuppressLint("RestrictedApi")
             val containerLayout: ConstraintLayout = findViewById(R.id.containervoterrequestlist)
             val newTextView = TextView(this).apply {
                 id = View.generateViewId() // Generate a unique ID
                 text = name
                 textSize = 18f
                 setPadding(16, 16, 16, 16)
+                setTextColor(Color.BLACK)
+
+                typeface = Typeface.create(typeface, Typeface.BOLD)
+
+                transformationMethod = AllCapsTransformationMethod(context)
             }
             val yButton = Button(this).apply {
                 id = View.generateViewId() // Generate a unique ID
@@ -82,6 +93,10 @@ class Voterrequest : ComponentActivity() {
                 tag = "ybtn+$uname"
                 textSize = 18f
                 setPadding(16, 16, 16, 16)
+                setBackgroundResource(R.drawable.input_button)
+
+                // Set text color
+                setTextColor(ContextCompat.getColor(context, R.color.white))
 
             }
             val nButton = Button(this).apply {
@@ -90,6 +105,10 @@ class Voterrequest : ComponentActivity() {
                 tag = "nbtn+$uname"
                 textSize = 18f
                 setPadding(16, 16, 16, 16)
+                setBackgroundResource(R.drawable.input_button)
+
+                // Set text color
+                setTextColor(ContextCompat.getColor(context, R.color.white))
 
             }
             yButton.setOnClickListener {

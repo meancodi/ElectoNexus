@@ -1,6 +1,8 @@
 package com.example.electonexus_project
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.text.AllCapsTransformationMethod
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.google.firebase.database.DataSnapshot
@@ -144,6 +147,7 @@ class voter_cast_vote : ComponentActivity() {
         }
         startActivity(intent)
     }
+    @SuppressLint("RestrictedApi")
     private fun createTextView(eid : String,name:String? ){
         val containerLayout: ConstraintLayout = findViewById(R.id.containercastvote)
         val newTextView = TextView(this).apply {
@@ -151,12 +155,20 @@ class voter_cast_vote : ComponentActivity() {
             text = eid
             textSize = 18f
             setPadding(16, 16, 16, 16)
+
+            typeface = Typeface.create(typeface, Typeface.BOLD)
+
+            transformationMethod = AllCapsTransformationMethod(context)
         }
         val newTextView1 = TextView(this).apply {
             id = View.generateViewId() // Generate a unique ID
             text = name
             textSize = 18f
             setPadding(16, 16, 16, 16)
+
+            typeface = Typeface.create(typeface, Typeface.BOLD)
+
+            transformationMethod = AllCapsTransformationMethod(context)
         }
 
 

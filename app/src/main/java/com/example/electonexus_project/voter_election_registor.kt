@@ -1,6 +1,9 @@
 package com.example.electonexus_project
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.text.AllCapsTransformationMethod
 import androidx.compose.animation.core.snap
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -27,6 +31,7 @@ class voter_election_registor : ComponentActivity() {
     private lateinit var eidtext : TextView
 
     private var ename : String =""
+
 
     private lateinit var fbrefelc : DatabaseReference
     private lateinit var fbrefacc : DatabaseReference
@@ -156,6 +161,7 @@ class voter_election_registor : ComponentActivity() {
         }
 
     }
+    @SuppressLint("RestrictedApi")
     private fun createTextView(eid : String, ename: String,estatus:String){
         val containerLayout: ConstraintLayout = findViewById(R.id.containerelectionregistor)
         val newTextView = TextView(this).apply {
@@ -163,18 +169,33 @@ class voter_election_registor : ComponentActivity() {
             text = eid
             textSize = 18f
             setPadding(16, 16, 16, 16)
+            setTextColor(Color.BLACK)
+
+            typeface = Typeface.create(typeface, Typeface.BOLD)
+
+            transformationMethod = AllCapsTransformationMethod(context)
         }
         val newTextView1 = TextView(this).apply {
             id = View.generateViewId() // Generate a unique ID
             text = ename
             textSize = 18f
             setPadding(16, 16, 16, 16)
+            setTextColor(Color.BLACK)
+
+            typeface = Typeface.create(typeface, Typeface.BOLD)
+
+            transformationMethod = AllCapsTransformationMethod(context)
         }
         val newTextView2 = TextView(this).apply {
             id = View.generateViewId() // Generate a unique ID
             text = estatus
             textSize = 18f
             setPadding(16, 16, 16, 16)
+            setTextColor(Color.BLACK)
+
+            typeface = Typeface.create(typeface, Typeface.BOLD)
+
+            transformationMethod = AllCapsTransformationMethod(context)
         }
 
         containerLayout.addView(newTextView)
