@@ -55,11 +55,11 @@ class voter_sign_up : ComponentActivity() {
             b=false
         }
         if(username.isEmpty()||(username.length>10)){
-            nameInsert.error = "Please enter username under 10 characters"
+            unInsert.error = "Please enter username under 10 characters"
             b=false
         }
         if(password.isEmpty()||(password.length>10)){
-            nameInsert.error = "Please enter password under 10 characters"
+            pwInsert.error = "Please enter password under 10 characters"
             b=false
         }
         if(b) {

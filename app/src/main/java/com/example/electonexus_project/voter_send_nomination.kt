@@ -75,8 +75,8 @@ class voter_send_nomination : ComponentActivity(){
                                                                     fbrefelc.child("$eid/Candidate/$un/name").setValue(a)
                                                                     fbrefelc.child("$eid/Candidate/$un/reqstat").setValue("ReqSent")
                                                                     fbrefelc.child("$eid/Candidate/$un/numvot").setValue(0)
-                                                                    fbrefacc.child("$un/CanididateRequest/$eid/reqstat").setValue("ReqSent")
-                                                                    fbrefacc.child("$un/CanididateRequest/$eid/ename").setValue(ename)
+                                                                    fbrefacc.child("$un/CandidateRequest/$eid/reqstat").setValue("ReqSent")
+                                                                    fbrefacc.child("$un/CandidateRequest/$eid/ename").setValue(ename)
                                                                 }
                                                             }
                                                         }
