@@ -50,6 +50,10 @@
             android:exported="false"/>
         <activity android:name=".voter_send_nomination"
             android:exported="false"/>
+        <activity android:name=".voter_election_registor"
+            android:exported="false"/>
+        <activity android:name=".voter_cast_vote"
+            android:exported="false"/>
 
         <activity
             android:name=".MainActivity"

@@ -24,6 +24,20 @@ class voter_dashboard : ComponentActivity(){
         enableEdgeToEdge()
         setContentView(R.layout.activity_voter_dashboard)
         setCredentialsFile()
+        val eregistor : Button = findViewById(R.id.Velectionregistor)
+        val castvotebutton : Button = findViewById(R.id.Vcastvotebutton)
+        eregistor.setOnClickListener {
+            Intent(this, voter_election_registor::class.java).also{startActivity(it) }
+        }
+        castvotebutton.setOnClickListener {
+            val intent = Intent(this, voter_cast_vote::class.java).apply {
+                putExtra("EXTRA_TEXT", "lanjaaa") // Put the string data as an extra
+            }
+            startActivity(intent)
+
+        }
+
+
 
         val vcandidatebutton : Button = findViewById(R.id.Vcandidateapply)
         vcandidatebutton.setOnClickListener {
