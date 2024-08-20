@@ -27,7 +27,7 @@ import java.io.InputStreamReader
 
 class voter_election_registor : ComponentActivity() {
 
-    private var lastTextViewId: Int? = R.id.ertextview
+    private var lastTextViewId: Int? = R.id.RS
     private lateinit var eidtext : TextView
 
     private var ename : String =""
@@ -229,7 +229,7 @@ class voter_election_registor : ComponentActivity() {
 
         constraintSet.connect(textView2.id, ConstraintSet.TOP, lastTextViewId!!, ConstraintSet.BOTTOM, 16)
 
-        constraintSet.connect(textView2.id, ConstraintSet.START, textView1.id, ConstraintSet.START,dpToPx(140f) )
+        constraintSet.connect(textView2.id, ConstraintSet.START, textView1.id, ConstraintSet.START,dpToPx(120f) )
 
 
 
