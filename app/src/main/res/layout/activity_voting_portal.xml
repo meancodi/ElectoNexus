@@ -36,22 +36,20 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="364dp"
             android:layout_height="84dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/input_bg"
             android:ems="10"
-            android:hint="Candidate ID"
 
-            android:inputType="number"
+            android:hint="Candidate Username"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textSize="24sp"
-            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Vp_tv"
-            />
+            app:layout_constraintTop_toBottomOf="@id/Vp_tv" />
 
         <Button
             android:id="@+id/Vp_vote"

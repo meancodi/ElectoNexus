@@ -95,7 +95,9 @@ class Voterrequest : ComponentActivity() {
             yButton.setOnClickListener {
                 val updatedstatus = "Accepted"
                 fbref.child("$uname/reqstat").setValue(updatedstatus)
+                fbref.child("$uname/votestat").setValue(false)
                 fbrefacc.child("$uname/ElectionRequest/$eid/reqstat").setValue(updatedstatus)
+                fbrefacc.child("$uname/ElectionRequest/$eid/votestat").setValue(false)
                 Toast.makeText(this, "$name is Accepted", Toast.LENGTH_SHORT).show()
                 delbutton()
                 fbinitialise()

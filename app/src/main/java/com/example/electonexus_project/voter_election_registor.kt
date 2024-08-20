@@ -66,6 +66,9 @@ class voter_election_registor : ComponentActivity() {
 
         eidbutton.setOnClickListener {
 
+            Intent(this, voter_election_registor::class.java).also{startActivity(it) }
+            finish()
+
             val eidtext : EditText = findViewById(R.id.VeidText)
             val eid : String = eidtext.text.toString()
             fbrefelc = FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Election")
@@ -147,8 +150,8 @@ class voter_election_registor : ComponentActivity() {
                 }
             })
 
-            Intent(this, voter_election_registor::class.java).also{startActivity(it) }
-            finish()
+//            Intent(this, voter_election_registor::class.java).also{startActivity(it) }
+//            finish()
 
         }
 

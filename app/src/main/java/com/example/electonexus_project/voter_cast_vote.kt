@@ -11,36 +11,129 @@ import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import org.checkerframework.checker.initialization.qual.FBCBottom
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.InputStreamReader
 
 class voter_cast_vote : ComponentActivity() {
-    private var lastTextViewId: Int? = R.id.Vcv_tv
+
+    private  var lastTextViewId: Int? = R.id.Vcv_tv
+
+
+    private lateinit var fbrefelc : DatabaseReference
+    private lateinit var fbrefacc : DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        val Vun: String = getCredentialsFile()
+        Toast.makeText(this@voter_cast_vote,"Vun = $Vun",Toast.LENGTH_SHORT).show()
+
+
         setContentView(R.layout.activity_cast_vote)
 
+        fbrefelc =
+            FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app")
+                .getReference("Election")
+        fbrefacc =
+            FirebaseDatabase.getInstance("https://electonexusmain-default-rtdb.asia-southeast1.firebasedatabase.app")
+                .getReference("Account")
+
+        //ACTIVE ELECTIONS DISPLAY CODE
+        fbrefacc.child("$Vun/ElectionRequest").addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(elc in snapshot.children){
+                        val eid = elc.key.toString()
+                        fbrefelc.addListenerForSingleValueEvent(object : ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if(snapshot.exists()){
+                                    for(el in snapshot.children){
+                                        val eidd = el.key.toString()
+                                        if(eidd == eid){
+                                            val status = el.child("Status").getValue(String::class.java)
+                                            if(status == "Active"){
+                                                val name = el.child("ename").getValue(String::class.java)
+                                                createTextView(eid,name)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                Toast.makeText(this@voter_cast_vote,error.message,Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                    }
+                }
+                else{
+                    Toast.makeText(this@voter_cast_vote,"No Elections are currently Active",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@voter_cast_vote,error.message,Toast.LENGTH_SHORT).show()
+            }
+        })
 
 
 
-        val searchbtn : Button = findViewById(R.id.Vcv_search)
+        val searchbtn: Button = findViewById(R.id.Vcv_search)
         searchbtn.setOnClickListener {
 
+            val eidet : EditText = findViewById(R.id.Vcv_eid)
+            val eid = eidet.text.toString()
+            fbrefelc.addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        var isEIDActive = false
+                        for(elc in snapshot.children){
+                            val eidd = elc.key.toString()
+                            val estat = elc.child("Status").value.toString()
+                            val votestat = elc.child("Voter/$Vun/votestat").value
+                            if(eid == eidd) {
+                                isEIDActive = true
+                                Toast.makeText(this@voter_cast_vote,"EID Found",Toast.LENGTH_SHORT).show()
+                                if (estat == "Active"&&(votestat == false)) {
+                                    createintent()
+                                }
+                                else{
+                                    if(estat != "Active"){
+                                        Toast.makeText(this@voter_cast_vote,"Election hasn't started yet",Toast.LENGTH_SHORT).show()
+                                    }
+                                    else if(votestat == true){
+                                        Toast.makeText(this@voter_cast_vote,"You have already voted",Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+
+                        }
+                        if(!isEIDActive) {
+                            Toast.makeText(this@voter_cast_vote,"EID not Found",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    else{
+                        Toast.makeText(this@voter_cast_vote,"EID not Found",Toast.LENGTH_SHORT).show()
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@voter_cast_vote,error.message,Toast.LENGTH_SHORT).show()
+                }
+            })
 
         }
 
-        val Vun: String = getCredentialsFile()
-        var i : Int =0
-
-        for(i in 0..30){
-
-            createTextView("lanja lapaki $i")
-        }
 
     }
+
     private fun createintent(){
 
         var eidtovp : EditText = findViewById(R.id.Vcv_eid)
@@ -51,11 +144,11 @@ class voter_cast_vote : ComponentActivity() {
         }
         startActivity(intent)
     }
-    private fun createTextView(name : String){
+    private fun createTextView(eid : String,name:String? ){
         val containerLayout: ConstraintLayout = findViewById(R.id.containercastvote)
         val newTextView = TextView(this).apply {
             id = View.generateViewId() // Generate a unique ID
-            text = name
+            text = eid
             textSize = 18f
             setPadding(16, 16, 16, 16)
         }
